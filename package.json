@@ -1,8 +1,20 @@
 {
+  "name": "forum",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
   "dependencies": {
     "@types/node": "^22.9.1",
     "@types/typescript": "^2.0.0",
     "typescript": "^5.6.3",
     "vitest": "^2.1.5"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
