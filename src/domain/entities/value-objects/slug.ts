@@ -3,6 +3,7 @@ export class Slug {
   constructor(value: string) {
     this.value = value
   }
+
   /**
    * Receives a string and normalize it as a slug
    *

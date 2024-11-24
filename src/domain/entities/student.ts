@@ -10,7 +10,7 @@ export class Student extends Entity<StudentsProps> {
       {
         ...props,
       },
-      id
+      id,
     )
     return students
   }

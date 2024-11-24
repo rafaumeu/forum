@@ -16,14 +16,14 @@ interface QuestionProps {
 export class Question extends Entity<QuestionProps> {
   static create(
     props: Optional<QuestionProps, 'createdAt'>,
-    id?: UniqueEntityId
+    id?: UniqueEntityId,
   ) {
     const question = new Question(
       {
         ...props,
         createdAt: new Date(),
       },
-      id
+      id,
     )
     return question
   }
