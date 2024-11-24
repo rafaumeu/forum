@@ -1,5 +1,4 @@
-import { expect, it } from 'vitest'
-import { Answer } from '../entities/answer'
+import { Answer } from '@/domain/entities/answer'
 import { AnswersRepository } from '../repositories/answers-repository'
 import { AnswerQuestionUseCase } from './answer-question'
 
