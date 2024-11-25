@@ -19,7 +19,7 @@ describe('Get question by slug', () => {
     const { question } = await sut.execute({
       slug: 'test-title',
     })
-    console.log(newQuestion)
+
     expect(question.id).toBeTruthy()
     expect(question.title).toEqual(newQuestion.title)
   })
