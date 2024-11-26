@@ -10,10 +10,6 @@ export interface AnswerProps {
   updatedAt?: Date
 }
 export class Answer extends Entity<AnswerProps> {
-  get content() {
-    return this.props.content
-  }
-
   get authorId() {
     return this.props.authorId
   }
@@ -36,6 +32,10 @@ export class Answer extends Entity<AnswerProps> {
 
   private touch() {
     this.props.updatedAt = new Date()
+  }
+
+  get content() {
+    return this.props.content
   }
 
   set content(content: string) {

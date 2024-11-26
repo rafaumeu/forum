@@ -15,16 +15,8 @@ export interface QuestionProps {
 }
 
 export class Question extends Entity<QuestionProps> {
-  get content() {
-    return this.props.content
-  }
-
   get authorId() {
     return this.props.authorId
-  }
-
-  get bestAnswerId() {
-    return this.props.bestAnswerId
   }
 
   get createdAt() {
@@ -43,10 +35,6 @@ export class Question extends Entity<QuestionProps> {
     this.props.updatedAt = new Date()
   }
 
-  get title() {
-    return this.props.title
-  }
-
   get slug() {
     return this.props.slug
   }
@@ -55,15 +43,27 @@ export class Question extends Entity<QuestionProps> {
     return dayjs().diff(this.createdAt, 'days') <= 3
   }
 
+  get content() {
+    return this.props.content
+  }
+
   set content(content: string) {
     this.props.content = content
     this.touch()
+  }
+
+  get title() {
+    return this.props.title
   }
 
   set title(title: string) {
     this.props.title = title
     this.props.slug = Slug.createFromText(title)
     this.touch()
+  }
+
+  get bestAnswerId() {
+    return this.props.bestAnswerId
   }
 
   set bestAnswerId(bestAnswerId: UniqueEntityId | undefined) {
