@@ -1,54 +1,57 @@
-# Forum 💬
+# 💬 Forum: Advanced Discussion Platform
 
-A sophisticated discussion platform built with Domain-Driven Design (DDD) and Clean Architecture principles.
+## 🚀 Project Overview
+
+Forum is a cutting-edge discussion platform meticulously crafted using Domain-Driven Design (DDD) and Clean Architecture principles. Designed for scalability, maintainability, and robust performance.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/rafaumeu/forum/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/rafaumeu/forum/actions)
 [![Version](https://img.shields.io/badge/version-1.0.0-blueviolet?style=for-the-badge)](https://github.com/rafaumeu/forum/releases)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.4-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=node.js)](https://nodejs.org/)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Coverage](https://img.shields.io/codecov/c/github/rafaumeu/forum?style=for-the-badge&logo=codecov)](https://codecov.io/gh/rafaumeu/forum)
-[![Last Commit](https://img.shields.io/github/last-commit/rafaumeu/forum?style=for-the-badge&logo=git)](https://github.com/rafaumeu/forum/commits/main)
-[![Contributors](https://img.shields.io/github/contributors/rafaumeu/forum?style=for-the-badge)](https://github.com/rafaumeu/forum/graphs/contributors)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.4-3178C6?style=for-the-badge)](https://www.typescriptlang.org/)
 
-## 🌟 Project Overview
+## ✨ Key Features
 
-Forum is an innovative discussion platform designed with a focus on robust architecture, scalability, and clean code principles. Built using Domain-Driven Design (DDD) and Clean Architecture, the project aims to provide a flexible and maintainable solution for creating discussion spaces.
-
-### ✨ Key Features
-
-- Comprehensive Question and Answer domain
-- Advanced commenting system
-- Flexible user entities (Student and Instructor)
-- Structured error handling
-- Clean, modular architecture
+- 🔍 **Comprehensive Q&A System**: Intuitive question and answer management
+- 💬 **Advanced Commenting**: Robust commenting functionality
+- 👥 **Flexible User Roles**: Distinct entities for Students and Instructors
+- 🏗️ **Clean Architecture**: Modular design with clear separation of concerns
+- 🛡️ **Domain-Driven Design**: Focus on core business logic and domain expertise
+- 🧪 **Rigorous Testing**: High test coverage and reliable code quality
 
 ## 🛠 Tech Stack
 
 ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
 ![Vitest](https://img.shields.io/badge/-Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white)
-![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white)
-![Prettier](https://img.shields.io/badge/-Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=black)
+![Prisma](https://img.shields.io/badge/-Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
 
-## 🌟 Project Overview
+## 📦 Project Structure
 
-Forum is an innovative discussion platform designed with a focus on robust architecture, scalability, and clean code principles. Built using Domain-Driven Design (DDD) and Clean Architecture, the project aims to provide a flexible and maintainable solution for creating discussion spaces.
+```
+forum/
+│
+├── src/
+│   ├── domain/           # Core business logic
+│   │   ├── entities/     # Domain models
+│   │   └── repositories/ # Data access interfaces
+│   │
+│   ├── application/      # Use cases and application logic
+│   │   └── use-cases/    # Business workflows
+│   │
+│   └── infra/            # Infrastructure implementations
+│       ├── database/     # Database configurations
+│       └── http/         # API route handlers
+│
+└── tests/                # Comprehensive test suites
+```
 
-### ✨ Key Features
-
-- Comprehensive Question and Answer domain
-- Advanced commenting system
-- Flexible user entities (Student and Instructor)
-- Structured error handling
-- Clean, modular architecture
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (v18+ recommended)
-- npm (v9+)
+- Node.js 18+
+- npm 9+
+- PostgreSQL
 
 ### Installation
 
@@ -62,87 +65,77 @@ cd forum
 # Install dependencies
 npm install
 
-# Run tests to verify installation
-npm run test
+# Set up environment variables
+cp .env.example .env
+
+# Run database migrations
+npm run db:migrate
+
+# Start the development server
+npm run dev
 ```
 
-## 📂 Project Structure
-
-```
-src/
-├── domain/
-│   ├── entities/
-│   │   ├── question.ts
-│   │   ├── answer.ts
-│   │   ├── student.ts
-│   │   └── instructor.ts
-│   └── repositories/
-│       └── ...
-├── application/
-│   └── use-cases/
-│       └── ...
-└── infra/
-    └── [under development]
-```
-
-## 🧪 Running Tests
+## 🧪 Testing
 
 ```bash
 # Run all tests
-npm run test
+npm test
 
 # Watch mode for development
-npm run test:watch
+npm test:watch
+
+# Generate coverage report
+npm run test:coverage
 ```
 
 ## 🗺️ Roadmap
 
-### Phase 1 - Core Domain (Completed)
+### Phase 1: Core Domain ✅
 
-- [x] Main entities implementation
-- [x] Base repositories development
-- [x] Initial use cases implementation
-- [x] Unit testing
+- [x] Core entities implementation
+- [x] Base repository design
+- [x] Initial use case development
+- [x] Comprehensive unit testing
 
-### Phase 2 - Infrastructure (In Progress)
+### Phase 2: Infrastructure 🚧
 
-- [ ] PostgreSQL configuration
-- [ ] Prisma repositories
-- [ ] Express routes development
-- [ ] Docker setup
+- [ ] PostgreSQL integration
+- [ ] Prisma ORM configuration
+- [ ] Express.js route implementation
+- [ ] Docker containerization
 
-### Phase 3 - Advanced Features
+### Phase 3: Advanced Features 📍
 
 - [ ] Authentication system
 - [ ] Complete CRUD operations
-- [ ] Advanced commenting system
-- [ ] Content voting mechanism
+- [ ] Enhanced commenting mechanisms
+- [ ] Content voting and reputation system
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ### Contribution Guidelines
 
-- Follow DDD principles
-- Maintain high test coverage
-- Adhere to coding standards
-- Document your changes
-
-## 📝 Design Principles
-
-- **Domain-Driven Design**: Focusing on core business logic
-- **Clean Architecture**: Ensuring separation of concerns
-- **Type Safety**: Leveraging TypeScript for robust development
+- Follow Domain-Driven Design principles
+- Maintain high test coverage (>80%)
+- Adhere to project coding standards
+- Document all significant changes
 
 ## 📄 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+---
+
 <p align="center">
-Made with ❤️ by Rafael
+   Crafted with ❤️ by Rafael
+   <br>
+   <a href="https://github.com/rafaumeu">@rafaumeu</a>
 </p>
