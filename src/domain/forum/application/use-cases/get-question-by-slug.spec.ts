@@ -1,3 +1,4 @@
+import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { Slug } from '@/domain/forum/enterprise/entities/value-objects/slug'
 import { makeQuestion } from 'test/factories/make-question'
@@ -16,11 +17,19 @@ describe('Get question by slug', () => {
     })
 
     await inMemoryQuestionsRepository.create(newQuestion)
-    const { question } = await sut.execute({
+    const result = await sut.execute({
       slug: 'test-title',
     })
+    expect(result.isRight()).toBe(true)
 
-    expect(question.id).toBeTruthy()
-    expect(question.title).toEqual(newQuestion.title)
+    expect(result.value?.question.id).toBeTruthy()
+    expect(result.value?.question.title).toEqual(newQuestion.title)
+  })
+  it('should return an error if the question is not found', async () => {
+    const result = await sut.execute({
+      slug: 'test-title',
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError)
   })
 })

@@ -9,12 +9,16 @@ describe('Create answer', () => {
     sut = new AnswerQuestionUseCase(inMemoryAnswersRepository)
   })
   it('should be able to answer', async () => {
-    const { answer } = await sut.execute({
+    const result = await sut.execute({
       instructorId: '1',
       questionId: '1',
       content: 'What is the meaning of life?',
     })
-    expect(answer.id).toBeTruthy()
-    expect(inMemoryAnswersRepository.items[0].id).toEqual(answer.id)
+    expect(result.isRight()).toBe(true)
+
+    expect(result.value?.answer.id).toBeTruthy()
+    expect(inMemoryAnswersRepository.items[0].id).toEqual(
+      result.value?.answer.id,
+    )
   })
 })

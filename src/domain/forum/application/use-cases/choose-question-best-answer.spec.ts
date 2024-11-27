@@ -1,6 +1,8 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 
 import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-cases/choose-question-best-answer'
+import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
+import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
 import { makeAnswer } from 'test/factories/make-answer'
 import { makeQuestion } from 'test/factories/make-question'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
@@ -41,30 +43,31 @@ describe('Delete question', () => {
 
     await inMemoryQuestionsRepository.create(question)
     await inMemoryAnswersRepository.create(answer)
-    await expect(() =>
-      sut.execute({
-        answerId: answer.id.toString(),
-        authorId: new UniqueEntityId('author-1').toString(),
-      }),
-    ).rejects.toBeInstanceOf(Error)
+
+    const result = await sut.execute({
+      answerId: answer.id.toString(),
+      authorId: new UniqueEntityId('author-1').toString(),
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(NotAllowedError)
   })
   it('should not be able to choose a non existing answer', async () => {
     const question = makeQuestion()
 
     await inMemoryQuestionsRepository.create(question)
-    await expect(() =>
-      sut.execute({
-        answerId: new UniqueEntityId().toString(),
-        authorId: question.authorId.toString(),
-      }),
-    ).rejects.toBeInstanceOf(Error)
+    const result = await sut.execute({
+      answerId: new UniqueEntityId().toString(),
+      authorId: question.authorId.toString(),
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError)
   })
   it('should not be able to choose a non existing question', async () => {
-    await expect(() =>
-      sut.execute({
-        answerId: new UniqueEntityId().toString(),
-        authorId: new UniqueEntityId().toString(),
-      }),
-    ).rejects.toBeInstanceOf(Error)
+    const result = await sut.execute({
+      answerId: new UniqueEntityId().toString(),
+      authorId: new UniqueEntityId().toString(),
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError)
   })
 })

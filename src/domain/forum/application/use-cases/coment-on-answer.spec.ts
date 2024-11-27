@@ -1,4 +1,5 @@
 import { CommentOnAnswersUseCase } from '@/domain/forum/application/use-cases/comment-on-answer'
+import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
 import { makeAnswer } from 'test/factories/make-answer'
 import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comment-repository'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
@@ -28,5 +29,14 @@ describe('Comment on answer', () => {
     expect(inMemoryAnswerCommentsRepository.items[0].content).toEqual(
       'Test comment',
     )
+  })
+  it('should not be able to comment on answer that does not exist', async () => {
+    const result = await sut.execute({
+      answerId: 'answer-1',
+      authorId: 'author-1',
+      content: 'Test comment',
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError)
   })
 })

@@ -1,5 +1,7 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
+import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
+import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
 import { makeAnswer } from 'test/factories/make-answer'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
 
@@ -28,14 +30,14 @@ describe('Edit answer', () => {
     })
   })
   it('should not be able to edit a answer that does not exist', async () => {
-    await expect(() =>
-      sut.execute({
-        authorId: 'author-1',
-        answerId: 'answer-1',
+    const result = await sut.execute({
+      authorId: 'author-1',
+      answerId: 'answer-1',
 
-        content: 'New content',
-      }),
-    ).rejects.toBeInstanceOf(Error)
+      content: 'New content',
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(ResourceNotFoundError)
   })
   it('should not be able to edit a answer from another user', async () => {
     const newAnswer = makeAnswer(
@@ -44,13 +46,13 @@ describe('Edit answer', () => {
     )
 
     await inMemoryAnswersRepository.create(newAnswer)
-    await expect(() =>
-      sut.execute({
-        authorId: 'author-1',
-        answerId: newAnswer.id.toValue(),
+    const result = await sut.execute({
+      authorId: 'author-1',
+      answerId: newAnswer.id.toValue(),
 
-        content: 'New content',
-      }),
-    ).rejects.toBeInstanceOf(Error)
+      content: 'New content',
+    })
+    expect(result.isLeft()).toBe(true)
+    expect(result.value).toBeInstanceOf(NotAllowedError)
   })
 })

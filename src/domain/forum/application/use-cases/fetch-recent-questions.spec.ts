@@ -23,22 +23,28 @@ describe('Fetch recent questions', () => {
         createdAt: new Date(2023, 0, 10),
       }),
     )
-    const { questions } = await sut.execute({
+    const result = await sut.execute({
       page: 1,
     })
-    expect(questions).toEqual([
-      expect.objectContaining({ createdAt: new Date(2023, 0, 20) }),
-      expect.objectContaining({ createdAt: new Date(2023, 0, 15) }),
-      expect.objectContaining({ createdAt: new Date(2023, 0, 10) }),
-    ])
+    expect(result.isRight()).toBe(true)
+    if (result.isRight()) {
+      const { questions } = result.value
+      expect(questions).toEqual([
+        expect.objectContaining({ createdAt: new Date(2023, 0, 20) }),
+        expect.objectContaining({ createdAt: new Date(2023, 0, 15) }),
+        expect.objectContaining({ createdAt: new Date(2023, 0, 10) }),
+      ])
+    }
   })
   it('should be able to fetch paginated recent questions', async () => {
     for (let i = 1; i <= 22; i++) {
       await inMemoryQuestionsRepository.create(makeQuestion())
     }
-    const { questions } = await sut.execute({
+    const result = await sut.execute({
       page: 2,
     })
-    expect(questions).toHaveLength(2)
+    expect(result.isRight()).toBe(true)
+
+    expect(result.value?.questions).toHaveLength(2)
   })
 })
