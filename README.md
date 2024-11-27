@@ -1,36 +1,72 @@
-# Forum: A DDD-Based Discussion Platform
+# Forum 💬
 
-[![Status](https://img.shields.io/badge/status-in%20development-orange)](#)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](#)
+A sophisticated discussion platform built with Domain-Driven Design (DDD) and Clean Architecture principles.
 
-A discussion platform in early development, built with Domain-Driven Design (DDD) principles and Clean Architecture.
+[![Build Status](https://img.shields.io/github/actions/workflow/status/rafaumeu/forum/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/rafaumeu/forum/actions)
+[![Version](https://img.shields.io/badge/version-1.0.0-blueviolet?style=for-the-badge)](https://github.com/rafaumeu/forum/releases)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](https://opensource.org/licenses/MIT)
+[![Coverage](https://img.shields.io/codecov/c/github/rafaumeu/forum?style=for-the-badge&logo=codecov)](https://codecov.io/gh/rafaumeu/forum)
+[![Last Commit](https://img.shields.io/github/last-commit/rafaumeu/forum?style=for-the-badge&logo=git)](https://github.com/rafaumeu/forum/commits/main)
+[![Contributors](https://img.shields.io/github/contributors/rafaumeu/forum?style=for-the-badge)](https://github.com/rafaumeu/forum/graphs/contributors)
 
-## Overview
+## 🌟 Project Overview
 
-Forum is in its initial development stages, focusing on implementing a robust architecture following DDD principles. The project aims to create a scalable and well-structured discussion platform.
+Forum is an innovative discussion platform designed with a focus on robust architecture, scalability, and clean code principles. Built using Domain-Driven Design (DDD) and Clean Architecture, the project aims to provide a flexible and maintainable solution for creating discussion spaces.
 
-### Current Project Status
+### ✨ Key Features
 
-#### ✅ Implemented
+- Comprehensive Question and Answer domain
+- Advanced commenting system
+- Flexible user entities (Student and Instructor)
+- Structured error handling
+- Clean, modular architecture
 
-- Core Question and Answer domain
-- Initial repositories
-- Fundamental use cases
-- Project structure following Clean Architecture
-- Commenting functionality for questions and answers
-- Fetching recent questions and answers
-- Editing and deleting questions and answers
-- Choosing the best answer for a question
-- Unit tests for core functionalities
+## 🛠 Tech Stack
 
-#### 🚧 Under Development
+![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
+![Vitest](https://img.shields.io/badge/-Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white)
+![ESLint](https://img.shields.io/badge/-ESLint-4B32C3?style=flat-square&logo=eslint&logoColor=white)
+![Prettier](https://img.shields.io/badge/-Prettier-F7B93E?style=flat-square&logo=prettier&logoColor=black)
 
-- Infrastructure implementation
-- Database setup
-- API routes development
-- Presentation layer implementation
+## 🌟 Project Overview
 
-## Architecture Structure
+Forum is an innovative discussion platform designed with a focus on robust architecture, scalability, and clean code principles. Built using Domain-Driven Design (DDD) and Clean Architecture, the project aims to provide a flexible and maintainable solution for creating discussion spaces.
+
+### ✨ Key Features
+
+- Comprehensive Question and Answer domain
+- Advanced commenting system
+- Flexible user entities (Student and Instructor)
+- Structured error handling
+- Clean, modular architecture
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18+ recommended)
+- npm (v9+)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/rafaumeu/forum
+
+# Navigate to project directory
+cd forum
+
+# Install dependencies
+npm install
+
+# Run tests to verify installation
+npm run test
+```
+
+## 📂 Project Structure
 
 ```
 src/
@@ -38,116 +74,75 @@ src/
 │   ├── entities/
 │   │   ├── question.ts
 │   │   ├── answer.ts
-│   │   ├── question-comment.ts
-│   │   └── answer-comment.ts
+│   │   ├── student.ts
+│   │   └── instructor.ts
 │   └── repositories/
-│       ├── questions-repository.ts
-│       ├── answers-repository.ts
-│       ├── question-comment-repository.ts
-│       └── answer-comment-repository.ts
+│       └── ...
 ├── application/
 │   └── use-cases/
-│       ├── create-question.ts
-│       ├── edit-question.ts
-│       ├── delete-question.ts
-│       ├── comment-on-question.ts
-│       ├── fetch-question-comments.ts
-│       ├── answer-question.ts
-│       ├── edit-answer.ts
-│       ├── delete-answer.ts
-│       ├── choose-question-best-answer.ts
-│       ├── fetch-recent-questions.ts
-│       └── fetch-answers-comment.ts
+│       └── ...
 └── infra/
     └── [under development]
 ```
 
-## Tech Stack
+## 🧪 Running Tests
 
-### Core Technologies
+```bash
+# Run all tests
+npm run test
 
-- **Language**: TypeScript
-- **Runtime**: Node.js
+# Watch mode for development
+npm run test:watch
+```
 
-### Quality Assurance
+## 🗺️ Roadmap
 
-- **Testing**: Vitest
-- **Linting**: ESLint + Prettier
-
-## Development Roadmap
-
-### Phase 1 - Core Domain (Current)
+### Phase 1 - Core Domain (Completed)
 
 - [x] Main entities implementation
 - [x] Base repositories development
 - [x] Initial use cases implementation
-- [x] Use cases unit testing
+- [x] Unit testing
 
-### Phase 2 - Infrastructure
+### Phase 2 - Infrastructure (In Progress)
 
 - [ ] PostgreSQL configuration
-- [ ] Prisma repositories implementation
+- [ ] Prisma repositories
 - [ ] Express routes development
 - [ ] Docker setup
 
-### Phase 3 - Features
+### Phase 3 - Advanced Features
 
 - [ ] Authentication system
-- [ ] Complete questions and answers CRUD
-- [ ] Comments system
-- [ ] Content voting
+- [ ] Complete CRUD operations
+- [ ] Advanced commenting system
+- [ ] Content voting mechanism
 
-## Planned Endpoints
+## 🤝 Contributing
 
-- `POST /questions` - Create new question
-- `GET /questions/:id` - Get specific question
-- `POST /answers` - Create new answer
-- `GET /answers/:id` - Get specific answer
-- `POST /questions/:id/comments` - Comment on a question
-- `POST /answers/:id/comments` - Comment on an answer
-
-## Running Tests
-
-```bash
-# Run unit tests
-npm run test
-
-# Watch mode
-npm run test:watch
-```
-
-## Design Decisions
-
-- **DDD and Clean Architecture**: Ensures separation of concerns and maintainable code
-- **TypeScript**: Provides type safety and better developer experience
-- **Repository Pattern**: Abstracts data persistence details from domain logic
-
-## Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/rafaumeu/forum
-cd forum
-
-# Install dependencies
-npm install
-
-# Run tests
-npm run test
-```
-
-## Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/NewFeature`)
-3. Commit your changes (`git commit -m 'Add NewFeature'`)
-4. Push to the branch (`git push origin feature/NewFeature`)
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
+### Contribution Guidelines
 
-This project is licensed under the MIT License - see the **LICENSE** file for details.
+- Follow DDD principles
+- Maintain high test coverage
+- Adhere to coding standards
+- Document your changes
+
+## 📝 Design Principles
+
+- **Domain-Driven Design**: Focusing on core business logic
+- **Clean Architecture**: Ensuring separation of concerns
+- **Type Safety**: Leveraging TypeScript for robust development
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="center">
-Built with ❤️ by <a href="https://github.com/rafaumeu">rafaumeu</a>
+Made with ❤️ by Rafael
 </p>
