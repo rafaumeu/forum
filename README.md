@@ -4,7 +4,7 @@ A sophisticated discussion platform built with Domain-Driven Design (DDD) and Cl
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/rafaumeu/forum/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/rafaumeu/forum/actions)
 [![Version](https://img.shields.io/badge/version-1.0.0-blueviolet?style=for-the-badge)](https://github.com/rafaumeu/forum/releases)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.4-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=node.js)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Coverage](https://img.shields.io/codecov/c/github/rafaumeu/forum?style=for-the-badge&logo=codecov)](https://codecov.io/gh/rafaumeu/forum)
