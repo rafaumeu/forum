@@ -1,14 +1,11 @@
 import { QuestionCommentsRepository } from '@/domain/forum/application/repositories/question-comment-repository'
-import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment'
 
 interface DeleteQuestionCommentUseCaseRequest {
   authorId: string
   questionCommentId: string
 }
 
-interface DeleteQuestionCommentUseCaseResponse {
-  questionComment: QuestionComment
-}
+interface DeleteQuestionCommentUseCaseResponse {}
 export class DeleteQuestionCommentsUseCase {
   constructor(private questionCommentRepository: QuestionCommentsRepository) {}
 
@@ -27,8 +24,6 @@ export class DeleteQuestionCommentsUseCase {
       throw new Error('Not allowed')
     }
     await this.questionCommentRepository.delete(questionComment)
-    return {
-      questionComment,
-    }
+    return {}
   }
 }
