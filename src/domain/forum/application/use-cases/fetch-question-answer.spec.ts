@@ -1,5 +1,6 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import { FetchQuestionsAnswerUseCase } from '@/domain/forum/application/use-cases/fetch-questions-answers'
+import { FetchQuestionsAnswerUseCase } from '@/domain/forum/application/use-cases/fetch-question-answer'
+
 import { makeAnswer } from 'test/factories/make-answer'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
 
