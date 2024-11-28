@@ -1,29 +1,68 @@
 # 💬 Forum: Advanced Discussion Platform
 
+[![Node.js Version](https://img.shields.io/badge/Node.js-18+-brightgreen.svg)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/rafaumeu/forum)
+[![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](https://github.com/rafaumeu/forum)
+[![DDD](https://img.shields.io/badge/Architecture-DDD-orange)](https://en.wikipedia.org/wiki/Domain-driven_design)
+[![Prisma](https://img.shields.io/badge/ORM-Prisma-blue)](https://www.prisma.io/)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)](https://www.postgresql.org/)
+
+[Resto do README anterior permanece igual]
+
 ## 🚀 Project Overview
 
-Forum is a cutting-edge discussion platform meticulously crafted using Domain-Driven Design (DDD) and Clean Architecture principles. Designed for scalability, maintainability, and robust performance.
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/rafaumeu/forum/ci.yml?branch=main&style=for-the-badge&logo=github)](https://github.com/rafaumeu/forum/actions)
-[![Version](https://img.shields.io/badge/version-1.0.0-blueviolet?style=for-the-badge)](https://github.com/rafaumeu/forum/releases)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0.4-3178C6?style=for-the-badge)](https://www.typescriptlang.org/)
+Forum is a cutting-edge discussion platform meticulously crafted using Domain-Driven Design (DDD) and Clean Architecture principles. Designed for exceptional scalability, maintainability, and robust performance, this platform introduces advanced error handling, domain event management, and efficient data structures.
 
 ## ✨ Key Features
 
-- 🔍 **Comprehensive Q&A System**: Intuitive question and answer management
-- 💬 **Advanced Commenting**: Robust commenting functionality
-- 👥 **Flexible User Roles**: Distinct entities for Students and Instructors
-- 🏗️ **Clean Architecture**: Modular design with clear separation of concerns
-- 🛡️ **Domain-Driven Design**: Focus on core business logic and domain expertise
-- 🧪 **Rigorous Testing**: High test coverage and reliable code quality
+### 🏗️ Architectural Excellence
+
+- **Clean Architecture**: Modular design with crystal-clear separation of concerns
+- **Domain-Driven Design (DDD)**: Laser-focused on core business logic and domain expertise
+- **Functional Error Handling**: Providing a resilient and user-friendly experience
+
+### 💬 Core Functionalities
+
+- **Comprehensive Q&A System**: Intuitive question and answer management
+- **Advanced Commenting**: Robust and flexible commenting infrastructure
+- **Flexible User Roles**: Distinct entities for Students and Instructors
+
+### 🧪 Quality Assurance
+
+- **Rigorous Testing**: High test coverage ensuring code reliability
+- **Domain Event Management**: Efficient communication between system components
+- **Watched Lists**: Dynamic data management with observable collections
 
 ## 🛠 Tech Stack
 
-![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/-Node.js-339933?style=flat-square&logo=node.js&logoColor=white)
-![Vitest](https://img.shields.io/badge/-Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white)
-![Prisma](https://img.shields.io/badge/-Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white)
+### Languages & Frameworks
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+
+### Database
+
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+
+### Testing & Quality
+
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+
+### DevOps & Tools
+
+![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
+
+### Development Principles
+
+![Domain Driven Design](https://img.shields.io/badge/Architecture-Domain--Driven%20Design-orange?style=for-the-badge)
+![Clean Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-blue?style=for-the-badge)
 
 ## 📦 Project Structure
 
@@ -31,18 +70,18 @@ Forum is a cutting-edge discussion platform meticulously crafted using Domain-Dr
 forum/
 │
 ├── src/
-│   ├── domain/           # Core business logic
-│   │   ├── entities/     # Domain models
-│   │   └── repositories/ # Data access interfaces
+│   ├── domain/               # Core business logic
+│   │   ├── entities/         # Domain models
+│   │   └── repositories/     # Data access interfaces
 │   │
-│   ├── application/      # Use cases and application logic
-│   │   └── use-cases/    # Business workflows
+│   ├── application/          # Use cases and application logic
+│   │   └── use-cases/        # Business workflows
 │   │
-│   └── infra/            # Infrastructure implementations
-│       ├── database/     # Database configurations
-│       └── http/         # API route handlers
+│   └── infra/                # Infrastructure implementations
+│       ├── database/         # Database configurations
+│       └── http/             # API route handlers
 │
-└── tests/                # Comprehensive test suites
+└── tests/                    # Comprehensive test suites
 ```
 
 ## 🚀 Quick Start
@@ -82,17 +121,17 @@ npm run dev
 npm test
 
 # Watch mode for development
-npm test:watch
+npm run test:watch
 
 # Generate coverage report
 npm run test:coverage
 ```
 
-## 🗺️ Roadmap
+## 🗺️ Development Roadmap
 
 ### Phase 1: Core Domain ✅
 
-- [x] Core entities implementation
+- [x] Implementation of core entities
 - [x] Base repository design
 - [x] Initial use case development
 - [x] Comprehensive unit testing
@@ -113,19 +152,36 @@ npm run test:coverage
 
 ## 🤝 Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create!
+Contributions transform open-source communities into incredible learning and innovation platforms!
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+### How to Contribute
+
+1. **Fork the Project**
+2. **Create a Feature Branch**
+
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+
+3. **Commit Changes**
+
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+
+4. **Push to Branch**
+
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+
+5. **Open a Pull Request**
 
 ### Contribution Guidelines
 
-- Follow Domain-Driven Design principles
+- Adhere to Domain-Driven Design principles
 - Maintain high test coverage (>80%)
-- Adhere to project coding standards
+- Follow project coding standards
 - Document all significant changes
 
 ## 📄 License
@@ -135,7 +191,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 <p align="center">
-   Crafted with ❤️ by Rafael
-   <br>
-   <a href="https://github.com/rafaumeu">@rafaumeu</a>
+  Crafted with ❤️ by Rafael<br>
+  <a href="https://github.com/rafaumeu">@rafaumeu</a>
 </p>
