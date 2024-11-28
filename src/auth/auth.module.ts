@@ -9,9 +9,17 @@ import { PassportModule } from '@nestjs/passport'
     PassportModule,
     JwtModule.registerAsync({
       inject: [ConfigService],
+      global: true,
       useFactory: (config: ConfigService<Env, true>) => {
-        const secret = config.get('JWT_SECRET', { inter: true })
-        return {}
+        const privateKey = config.get('JWT_SECRET_PRIVATE_KEY', { inter: true })
+        const publicKey = config.get('JWT_SECRET_PUBLIC_KEY', { inter: true })
+        return {
+          signOptions: {
+            algorithm: 'RS256',
+          },
+          privateKey: Buffer.from(privateKey, 'base64'),
+          publicKey: Buffer.from(publicKey, 'base64'),
+        }
       },
     }),
   ],
