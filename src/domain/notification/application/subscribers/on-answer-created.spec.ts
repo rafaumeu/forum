@@ -22,9 +22,8 @@ let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 let sut: SendNotificationUseCase
 
 let sendNotificationExecuteSpy: MockInstance<
-  (
-    request: SendNotificationUseCaseRequest,
-  ) => Promise<SendNotificationUseCaseResponse>
+  [SendNotificationUseCaseRequest],
+  Promise<SendNotificationUseCaseResponse>
 >
 
 describe('On answer created', () => {
