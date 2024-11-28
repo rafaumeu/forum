@@ -33,6 +33,7 @@
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",
+    "@rocketseat/eslint-config": "^1.2.0",
     "@swc/core": "^1.9.3",
     "@types/express": "^5.0.0",
     "@types/node": "^20.3.1",

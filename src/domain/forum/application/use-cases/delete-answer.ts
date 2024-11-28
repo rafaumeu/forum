@@ -10,7 +10,7 @@ interface DeleteAnswerUseCaseRequest {
 
 type DeleteAnswerUseCaseResponse = Either<
   ResourceNotFoundError | NotAllowedError,
-  {}
+  null
 >
 export class DeleteAnswerUseCase {
   constructor(private answersRepository: AnswersRepository) {}
@@ -26,6 +26,6 @@ export class DeleteAnswerUseCase {
       return left(new NotAllowedError())
     }
     await this.answersRepository.delete(answer)
-    return right({})
+    return right(null)
   }
 }
