@@ -1,87 +1,75 @@
 # 💬 Forum: Advanced Discussion Platform
 
-[![Node.js Version](https://img.shields.io/badge/Node.js-18+-brightgreen.svg)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-4.9.5-blue.svg)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/rafaumeu/forum)
-[![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](https://github.com/rafaumeu/forum)
-[![DDD](https://img.shields.io/badge/Architecture-DDD-orange)](https://en.wikipedia.org/wiki/Domain-driven_design)
-[![Prisma](https://img.shields.io/badge/ORM-Prisma-blue)](https://www.prisma.io/)
-[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue)](https://www.postgresql.org/)
-
-[Resto do README anterior permanece igual]
+![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)
+![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
+![License](https://img.shields.io/badge/License-MIT-yellow)
+![DDD](https://img.shields.io/badge/Architecture-DDD-orange)
 
 ## 🚀 Project Overview
 
-Forum is a cutting-edge discussion platform meticulously crafted using Domain-Driven Design (DDD) and Clean Architecture principles. Designed for exceptional scalability, maintainability, and robust performance, this platform introduces advanced error handling, domain event management, and efficient data structures.
+Forum is an advanced discussion platform built with cutting-edge software engineering principles, focusing on:
+
+- Domain-Driven Design (DDD)
+- Clean Architecture
+- Scalable and Maintainable Codebase
 
 ## ✨ Key Features
 
 ### 🏗️ Architectural Excellence
 
-- **Clean Architecture**: Modular design with crystal-clear separation of concerns
-- **Domain-Driven Design (DDD)**: Laser-focused on core business logic and domain expertise
-- **Functional Error Handling**: Providing a resilient and user-friendly experience
+- **Clean Architecture**: Modular design with clear separation of concerns
+- **Domain-Driven Design**: Focused on core business logic
+- **Functional Error Handling**: Resilient and user-friendly experience
 
 ### 💬 Core Functionalities
 
-- **Comprehensive Q&A System**: Intuitive question and answer management
-- **Advanced Commenting**: Robust and flexible commenting infrastructure
-- **Flexible User Roles**: Distinct entities for Students and Instructors
+- Comprehensive Q&A System
+- Advanced Commenting Infrastructure
+- Flexible User Role Management (Students and Instructors)
 
 ### 🧪 Quality Assurance
 
-- **Rigorous Testing**: High test coverage ensuring code reliability
-- **Domain Event Management**: Efficient communication between system components
-- **Watched Lists**: Dynamic data management with observable collections
+- Rigorous Testing
+- Domain Event Management
+- Observable Collections and Dynamic Data Management
 
 ## 🛠 Tech Stack
 
 ### Languages & Frameworks
 
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+- TypeScript
+- Node.js
+- Express.js
 
 ### Database
 
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
+- PostgreSQL
+- Prisma ORM
 
 ### Testing & Quality
 
-![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
-![ESLint](https://img.shields.io/badge/ESLint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white)
+- Vitest
+- ESLint
 
 ### DevOps & Tools
 
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-
-### Development Principles
-
-![Domain Driven Design](https://img.shields.io/badge/Architecture-Domain--Driven%20Design-orange?style=for-the-badge)
-![Clean Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-blue?style=for-the-badge)
+- Docker
+- Git
+- GitHub
 
 ## 📦 Project Structure
 
 ```
 forum/
-│
 ├── src/
-│   ├── domain/               # Core business logic
-│   │   ├── entities/         # Domain models
-│   │   └── repositories/     # Data access interfaces
-│   │
-│   ├── application/          # Use cases and application logic
-│   │   └── use-cases/        # Business workflows
-│   │
-│   └── infra/                # Infrastructure implementations
-│       ├── database/         # Database configurations
-│       └── http/             # API route handlers
-│
-└── tests/                    # Comprehensive test suites
+│   ├── domain/           # Core business logic
+│   │   ├── entities/     # Domain models
+│   │   └── repositories/ # Data access interfaces
+│   ├── application/      # Use cases and application logic
+│   └── infra/            # Infrastructure implementations
+│       ├── database/     # Database configurations
+│       └── http/         # API route handlers
+└── tests/                # Comprehensive test suites
 ```
 
 ## 🚀 Quick Start
@@ -91,6 +79,7 @@ forum/
 - Node.js 18+
 - npm 9+
 - PostgreSQL
+- Docker (optional)
 
 ### Installation
 
@@ -106,10 +95,75 @@ npm install
 
 # Set up environment variables
 cp .env.example .env
+```
+
+## 🔐 Environment Configuration
+
+### Generating Environment Variables
+
+#### Database Connection
+
+Update `DATABASE_URL` with your PostgreSQL credentials:
+
+```env
+DATABASE_URL="postgresql://your_username:your_password@localhost:5432/database=public"
+```
+
+#### JWT Secret Keys Generation
+
+Generate secure keys using OpenSSL:
+
+```bash
+# Generate Private Key
+openssl rand -base64 32 | openssl dgst -sha256 -binary | base64
+
+# Generate Public Key
+openssl rand -base64 32 | openssl dgst -sha256 -binary | base64
+```
+
+### `.env.example` Template
+
+```env
+# Database connection string
+DATABASE_URL="postgresql://user:password@localhost:5432/database=public"
+
+# JWT Secret Keys
+# Use OpenSSL commands above to generate these keys
+JWT_SECRET_PRIVATE_KEY="YOUR_PRIVATE_KEY_HERE"
+JWT_SECRET_PUBLIC_KEY="YOUR_PUBLIC_KEY_HERE"
+```
+
+## 🗃️ Database Setup
+
+### Using Docker Compose
+
+```bash
+# Start PostgreSQL database
+docker-compose up -d
+```
+
+### Prisma Database Management
+
+```bash
+# Initialize Prisma and generate database schema
+npx prisma generate
 
 # Run database migrations
-npm run db:migrate
+npx prisma migrate dev
 
+# Open Prisma Studio (Database Visualization Tool)
+npx prisma studio
+```
+
+#### Prisma Studio
+
+- Web-based database management interface
+- Allows direct data viewing and editing
+- Accessible at `http://localhost:5555`
+
+## 🚀 Running the Application
+
+```bash
 # Start the development server
 npm run dev
 ```
@@ -138,9 +192,9 @@ npm run test:coverage
 
 ### Phase 2: Infrastructure 🚧
 
-- [ ] PostgreSQL integration
-- [ ] Prisma ORM configuration
-- [ ] Express.js route implementation
+- [x] PostgreSQL integration
+- [x] Prisma ORM configuration
+- [x] Express.js route implementation
 - [ ] Docker containerization
 
 ### Phase 3: Advanced Features 📍
@@ -152,37 +206,44 @@ npm run test:coverage
 
 ## 🤝 Contributing
 
-Contributions transform open-source communities into incredible learning and innovation platforms!
+Contributions are welcome! Help us improve this open-source project.
 
 ### How to Contribute
 
-1. **Fork the Project**
-2. **Create a Feature Branch**
+1. Fork the Project
+2. Create a Feature Branch
 
    ```bash
    git checkout -b feature/AmazingFeature
    ```
 
-3. **Commit Changes**
+3. Commit Changes
 
    ```bash
    git commit -m 'Add some AmazingFeature'
    ```
 
-4. **Push to Branch**
+4. Push to Branch
 
    ```bash
    git push origin feature/AmazingFeature
    ```
 
-5. **Open a Pull Request**
+5. Open a Pull Request
 
 ### Contribution Guidelines
 
 - Adhere to Domain-Driven Design principles
 - Maintain high test coverage (>80%)
 - Follow project coding standards
-- Document all significant changes
+- Document significant changes
+
+## 🔒 Security Recommendations
+
+- Never commit `.env` file to version control
+- Use strong, unique secrets
+- Rotate keys periodically
+- Limit environment variable access
 
 ## 📄 License
 
