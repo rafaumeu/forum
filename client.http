@@ -35,3 +35,12 @@ Authorization: Bearer {{authToken}}
   "title": "What is the meaning of life",
   "content": "dfafafdasdf"
 }
+
+###
+
+# @name fetch_recent_questions
+
+GET {{baseUrl}}/questions?page=1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
