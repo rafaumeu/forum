@@ -1,7 +1,6 @@
 import { OnQuestionBestAnswerChosen } from '@/domain/notification/application/subscribers/on-question-best-answer-chosen'
 import {
   SendNotificationUseCase,
-  SendNotificationUseCaseRequest,
   SendNotificationUseCaseResponse,
 } from '@/domain/notification/application/use-cases/send-notification'
 import { makeAnswer } from 'test/factories/make-answer'
@@ -22,9 +21,9 @@ let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 let sut: SendNotificationUseCase
 
 let sendNotificationExecuteSpy: MockInstance<
-  [SendNotificationUseCaseRequest],
-  Promise<SendNotificationUseCaseResponse>
+  () => Promise<SendNotificationUseCaseResponse>
 >
+
 describe('On question best answer chosen', () => {
   beforeEach(() => {
     inMemoryQuestionAttachmentsRepository =
