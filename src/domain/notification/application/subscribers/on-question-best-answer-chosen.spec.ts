@@ -1,6 +1,7 @@
 import { OnQuestionBestAnswerChosen } from '@/domain/notification/application/subscribers/on-question-best-answer-chosen'
 import {
   SendNotificationUseCase,
+  SendNotificationUseCaseRequest,
   SendNotificationUseCaseResponse,
 } from '@/domain/notification/application/use-cases/send-notification'
 import { makeAnswer } from 'test/factories/make-answer'
@@ -12,7 +13,6 @@ import { MockInstance } from 'vitest'
 import { InMemoryAnswerAttachmentsRepository } from '../../../../../test/repositories/in-memory-answer-attachment.repository'
 import { InMemoryAnswersRepository } from '../../../../../test/repositories/in-memory-answer-repository'
 import { InMemoryNotificationsRepository } from '../../../../../test/repositories/in-memory-notifications-repository'
-
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let inMemoryAnswersRepository: InMemoryAnswersRepository
@@ -21,7 +21,9 @@ let inMemoryNotificationsRepository: InMemoryNotificationsRepository
 let sut: SendNotificationUseCase
 
 let sendNotificationExecuteSpy: MockInstance<
-  () => Promise<SendNotificationUseCaseResponse>
+  (
+    request: SendNotificationUseCaseRequest,
+  ) => Promise<SendNotificationUseCaseResponse>
 >
 
 describe('On question best answer chosen', () => {
