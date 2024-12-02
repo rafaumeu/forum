@@ -5,168 +5,139 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 ![DDD](https://img.shields.io/badge/Architecture-DDD-orange)
 
-## 🚀 Project Overview
+## 🌟 Project Description
 
-Forum is an advanced discussion platform built with cutting-edge software engineering principles, focusing on:
+Forum is a sophisticated discussion platform designed with modern software engineering principles, providing a robust and scalable solution for online interactions. Built using Domain-Driven Design (DDD) and Clean Architecture, this platform offers a comprehensive and extensible framework for creating engaging digital communities.
 
-- Domain-Driven Design (DDD)
-- Clean Architecture
-- Scalable and Maintainable Codebase
+## 🎯 Project Goals
+
+- Develop a flexible and maintainable discussion platform
+- Implement robust user interaction mechanisms
+- Ensure high-quality code with rigorous testing and architectural best practices
 
 ## ✨ Key Features
 
-### 🏗️ Architectural Excellence
+### 🏗️ Architectural Foundations
 
-- **Clean Architecture**: Modular design with clear separation of concerns
-- **Domain-Driven Design**: Focused on core business logic
-- **Functional Error Handling**: Resilient and user-friendly experience
+- **Clean Architecture**: Modular design ensuring separation of concerns
+- **Domain-Driven Design**: Focus on core business logic and domain modeling
+- **Functional Error Handling**: Creating resilient and user-friendly experiences
 
 ### 💬 Core Functionalities
 
-- Comprehensive Q&A System
-- Advanced Commenting Infrastructure
-- Flexible User Role Management (Students and Instructors)
+1. **Comprehensive Q&A System**
+   - Intuitive question and answer interfaces
+   - Advanced search and filtering capabilities
 
-### 🧪 Quality Assurance
+2. **Advanced Commenting Infrastructure**
+   - Nested comments
+   - Rich text support
+   - User mention functionality
 
-- Rigorous Testing
-- Domain Event Management
-- Observable Collections and Dynamic Data Management
+3. **Flexible User Management**
+   - Differentiated roles (Students, Instructors)
+   - Granular permission controls
 
-## 🛠 Tech Stack
+4. **Authentication System**
+   - Secure user registration and login
+   - JWT-based authentication
+   - Role-based access control
+
+5. **Content Interaction Mechanisms**
+   - Voting system
+   - Reputation points
+   - Content moderation tools
+
+## 🛠 Technology Stack
 
 ### Languages & Frameworks
 
-- TypeScript
-- Node.js
-- Express.js
+- **Language**: TypeScript
+- **Runtime**: Node.js
+- **Web Framework**: Express.js
 
-### Database
+### Database Ecosystem
 
-- PostgreSQL
-- Prisma ORM
+- **Database**: PostgreSQL
+- **ORM**: Prisma
 
-### Testing & Quality
+### Testing & Quality Assurance
 
-- Vitest
-- ESLint
+- **Testing Framework**: Vitest
+- **Linting**: ESLint
+- **Coverage Reporting**: Built-in test coverage tools
 
-### DevOps & Tools
+### DevOps & Infrastructure
 
-- Docker
-- Git
-- GitHub
+- **Containerization**: Docker
+- **Version Control**: Git
+- **Repository**: GitHub
 
-## 📦 Project Structure
+## 📂 Project Structure
 
 ```
 forum/
+│
 ├── src/
 │   ├── domain/           # Core business logic
 │   │   ├── entities/     # Domain models
 │   │   └── repositories/ # Data access interfaces
+│   │
 │   ├── application/      # Use cases and application logic
+│   │
 │   └── infra/            # Infrastructure implementations
 │       ├── database/     # Database configurations
 │       └── http/         # API route handlers
+│
 └── tests/                # Comprehensive test suites
 ```
 
-## 🚀 Quick Start
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
 - npm 9+
 - PostgreSQL
-- Docker (optional)
+- Docker (recommended)
 
-### Installation
+### Installation Steps
 
-```bash
-# Clone the repository
-git clone https://github.com/rafaumeu/forum
+1. Clone the repository
 
-# Navigate to project directory
-cd forum
+   ```bash
+   git clone https://github.com/rafaumeu/forum
+   cd forum
+   ```
 
-# Install dependencies
-npm install
+2. Install dependencies
 
-# Set up environment variables
-cp .env.example .env
-```
+   ```bash
+   npm install
+   ```
 
-## 🔐 Environment Configuration
+3. Configure environment variables
 
-### Generating Environment Variables
+   ```bash
+   cp .env.example .env
+   ```
 
-#### Database Connection
+4. Set up database
 
-Update `DATABASE_URL` with your PostgreSQL credentials:
+   ```bash
+   # Using Docker
+   docker-compose up -d
 
-```env
-DATABASE_URL="postgresql://your_username:your_password@localhost:5432/database=public"
-```
+   # Initialize Prisma
+   npx prisma generate
+   npx prisma migrate dev
+   ```
 
-#### JWT Secret Keys Generation
+5. Run the application
 
-Generate secure keys using OpenSSL:
-
-```bash
-# Generate Private Key
-openssl rand -base64 32 | openssl dgst -sha256 -binary | base64
-
-# Generate Public Key
-openssl rand -base64 32 | openssl dgst -sha256 -binary | base64
-```
-
-### `.env.example` Template
-
-```env
-# Database connection string
-DATABASE_URL="postgresql://user:password@localhost:5432/database=public"
-
-# JWT Secret Keys
-# Use OpenSSL commands above to generate these keys
-JWT_SECRET_PRIVATE_KEY="YOUR_PRIVATE_KEY_HERE"
-JWT_SECRET_PUBLIC_KEY="YOUR_PUBLIC_KEY_HERE"
-```
-
-## 🗃️ Database Setup
-
-### Using Docker Compose
-
-```bash
-# Start PostgreSQL database
-docker-compose up -d
-```
-
-### Prisma Database Management
-
-```bash
-# Initialize Prisma and generate database schema
-npx prisma generate
-
-# Run database migrations
-npx prisma migrate dev
-
-# Open Prisma Studio (Database Visualization Tool)
-npx prisma studio
-```
-
-#### Prisma Studio
-
-- Web-based database management interface
-- Allows direct data viewing and editing
-- Accessible at `http://localhost:5555`
-
-## 🚀 Running the Application
-
-```bash
-# Start the development server
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
 ## 🧪 Testing
 
@@ -195,35 +166,37 @@ npm run test:coverage
 - [x] PostgreSQL integration
 - [x] Prisma ORM configuration
 - [x] Express.js route implementation
-- [ ] Docker containerization
+- [x] Docker containerization
 
 ### Phase 3: Advanced Features 📍
 
-- [ ] Authentication system
-- [ ] Complete CRUD operations
-- [ ] Enhanced commenting mechanisms
-- [ ] Content voting and reputation system
+- [x] Authentication system
+- [x] Complete CRUD operations
+- [x] Enhanced commenting mechanisms
+- [x] Content voting and reputation system
+- [ ] Implementation of controllers
+- [ ] Support for file uploads
+- [ ] Establishing relationships between entities
+- [ ] Implementing domain caching strategies
 
 ## 🤝 Contributing
 
-Contributions are welcome! Help us improve this open-source project.
+Contributions are welcome! Please follow these guidelines:
 
-### How to Contribute
-
-1. Fork the Project
-2. Create a Feature Branch
+1. Fork the repository
+2. Create a feature branch
 
    ```bash
    git checkout -b feature/AmazingFeature
    ```
 
-3. Commit Changes
+3. Commit your changes
 
    ```bash
    git commit -m 'Add some AmazingFeature'
    ```
 
-4. Push to Branch
+4. Push to the branch
 
    ```bash
    git push origin feature/AmazingFeature
@@ -247,11 +220,11 @@ Contributions are welcome! Help us improve this open-source project.
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. See LICENSE for more information.
 
 ---
 
 <p align="center">
-  Crafted with ❤️ by Rafael<br>
-  <a href="https://github.com/rafaumeu">@rafaumeu</a>
+    Crafted with ❤️ by Rafael<br>
+    <a href="https://github.com/rafaumeu">@rafaumeu</a>
 </p>
