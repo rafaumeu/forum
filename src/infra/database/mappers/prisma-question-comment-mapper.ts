@@ -30,6 +30,8 @@ export class PrismaQuestionCommentMapper {
       content: questionComment.content,
       createdAt: questionComment.createdAt,
       updatedAt: questionComment.updatedAt,
+      parentId: questionComment.questionId.toString(), // adicionado
+      parentType: 'QUESTION',
     }
   }
 }

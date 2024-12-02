@@ -30,6 +30,8 @@ export class PrismaAnswerCommentMapper {
       content: answerComment.content,
       createdAt: answerComment.createdAt,
       updatedAt: answerComment.updatedAt,
+      parentId: answerComment.answerId.toString(), // adicionado
+      parentType: 'ANSWER', // adicionado
     }
   }
 }
