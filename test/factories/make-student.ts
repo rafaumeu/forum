@@ -14,7 +14,7 @@ export function makeStudent(
 ) {
   const student = Student.create(
     {
-      name: faker.name.fullName(),
+      name: faker.person.fullName(),
       email: faker.internet.email(),
       password: faker.internet.password(),
       ...override,
