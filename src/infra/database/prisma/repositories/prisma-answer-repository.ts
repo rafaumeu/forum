@@ -1,29 +1,55 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
 import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
 import { Answer } from '@/domain/forum/enterprise/entities/answer'
+import { PrismaAnswerMapper } from '@/infra/database/mappers/prisma-answer-mapper'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
 import { Injectable } from '@nestjs/common'
 @Injectable()
 export class PrismaAnswerRepository implements AnswersRepository {
-  findById(answerId: string): Promise<Answer | null> {
-    throw new Error('Method not implemented.')
+  constructor(private prisma: PrismaService) {}
+  async findById(id: string): Promise<Answer | null> {
+    const answer = await this.prisma.answer.findUnique({
+      where: { id },
+    })
+    if (!answer) {
+      return null
+    }
+    return PrismaAnswerMapper.toDomain(answer)
   }
 
-  findManyByQuestionsId(
+  async findManyByQuestionsId(
     questionId: string,
-    params: PaginationParams,
+    { page }: PaginationParams,
   ): Promise<Answer[]> {
-    throw new Error('Method not implemented.')
+    const answers = await this.prisma.answer.findMany({
+      where: { questionId },
+      orderBy: { createdAt: 'desc' },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+    return answers.map(PrismaAnswerMapper.toDomain)
   }
 
-  save(answer: Answer): Promise<void> {
-    throw new Error('Method not implemented.')
+  async save(answer: Answer): Promise<void> {
+    const data = PrismaAnswerMapper.toPrisma(answer)
+
+    await this.prisma.answer.create({
+      data,
+    })
   }
 
-  delete(answer: Answer): Promise<void> {
-    throw new Error('Method not implemented.')
+  async delete(answer: Answer): Promise<void> {
+    await this.prisma.answer.delete({
+      where: { id: answer.id.toString() },
+    })
   }
 
-  create(answer: Answer): Promise<void> {
-    throw new Error('Method not implemented.')
+  async create(answer: Answer): Promise<void> {
+    const data = PrismaAnswerMapper.toPrisma(answer)
+
+    await this.prisma.answer.update({
+      where: { id: data.id },
+      data,
+    })
   }
 }

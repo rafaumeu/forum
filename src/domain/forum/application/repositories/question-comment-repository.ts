@@ -3,8 +3,8 @@ import { QuestionComment } from '@/domain/forum/enterprise/entities/question-com
 
 export interface QuestionCommentsRepository {
   findById(id: string): Promise<QuestionComment | null>
-  create(question: QuestionComment): Promise<void>
-  delete(question: QuestionComment): Promise<void>
+  create(questionComment: QuestionComment): Promise<void>
+  delete(questionComment: QuestionComment): Promise<void>
   findManyByQuestionId(
     questionId: string,
     { page }: PaginationParams,
