@@ -1,14 +1,22 @@
-import { left, right } from '@/core/either'
+import { Either, left, right } from '@/core/either'
 import { StudentsRepository } from '@/domain/forum/application/repositories/students-repository'
-import {
-  AuthenticateStudentUseCaseRequest,
-  AuthenticateStudentUseCaseResponse,
-} from '@/domain/forum/application/use-cases/authenticate-student'
+
 import { WrongCredentialsError } from '@/domain/forum/application/use-cases/errors/wrong-credentials-error'
 import { Encrypter } from '@/domain/notification/application/cryptography/encrypter'
 import { HashComparer } from '@/domain/notification/application/cryptography/hash-comparer'
 import { Injectable } from '@nestjs/common'
 
+interface AuthenticateStudentUseCaseRequest {
+  email: string
+  password: string
+}
+
+type AuthenticateStudentUseCaseResponse = Either<
+  WrongCredentialsError,
+  {
+    accessToken: string
+  }
+>
 @Injectable()
 export class AuthenticateStudentUseCase {
   constructor(
