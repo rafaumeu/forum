@@ -22,7 +22,7 @@ describe('Fetch answer comments', () => {
       makeAnswerComment({ answerId: new UniqueEntityId('answer-1') }),
     )
     const result = await sut.execute({
-      answerCommentId: 'answer-1',
+      answerId: 'answer-1',
       page: 1,
     })
     expect(result.isRight()).toBe(true)
@@ -40,7 +40,7 @@ describe('Fetch answer comments', () => {
       )
     }
     const result = await sut.execute({
-      answerCommentId: 'answer-1',
+      answerId: 'answer-1',
       page: 2,
     })
     expect(result.isRight()).toBe(true)
