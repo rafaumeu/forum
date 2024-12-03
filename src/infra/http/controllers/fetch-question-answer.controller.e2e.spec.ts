@@ -9,7 +9,7 @@ import { AnswerFactory } from 'test/factories/make-answer'
 import { QuestionFactory } from 'test/factories/make-question'
 import { StudentFactory } from 'test/factories/make-student'
 
-describe('Fetch answer answers (E2E)', () => {
+describe('Fetch question answers (E2E)', () => {
   let app: INestApplication
   let studentFactory: StudentFactory
   let answerFactory: AnswerFactory

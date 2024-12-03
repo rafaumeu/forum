@@ -29,7 +29,6 @@ export class FetchQuestionsAnswersController {
     @Query('page', queryValidationPipe) page: PageQueryParams,
     @Param('questionId') questionId: string,
   ) {
-    const perPage = 20
     const result = await this.fetchQuestionsAnswers.execute({
       page,
       questionId,
