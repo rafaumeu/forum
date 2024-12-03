@@ -37,6 +37,7 @@ import { FetchQuestionsCommentsController } from '@/infra/http/controllers/fetch
 
 import { FetchRecentQuestionsController } from '@/infra/http/controllers/fetch-recent-questions.controller'
 import { GetQuestionBySlugController } from '@/infra/http/controllers/get-question-by-slug.controller'
+import { UploadAttachmentController } from '@/infra/http/controllers/upload-attachment.controller'
 
 import { Module } from '@nestjs/common'
 
@@ -61,6 +62,7 @@ import { Module } from '@nestjs/common'
     DeleteAnswerCommentController,
     FetchQuestionsCommentsController,
     FetchAnswersCommentsController,
+    UploadAttachmentController,
   ],
   providers: [
     CreateQuestionUseCase,

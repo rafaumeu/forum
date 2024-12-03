@@ -1,98 +1,64 @@
 # 💬 Forum: Advanced Discussion Platform
 
-![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue)
-![Node.js](https://img.shields.io/badge/Node.js-v18+-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![DDD](https://img.shields.io/badge/Architecture-DDD-orange)
+## 🌟 Project Overview
 
-## 🌟 Project Description
+A cutting-edge discussion platform leveraging modern software engineering principles to create a scalable, robust online community interaction system. Built with Domain-Driven Design (DDD) and Clean Architecture to ensure flexibility, maintainability, and superior user experience.
 
-Forum is a sophisticated discussion platform designed with modern software engineering principles, providing a robust and scalable solution for online interactions. Built using Domain-Driven Design (DDD) and Clean Architecture, this platform offers a comprehensive and extensible framework for creating engaging digital communities.
+## 🎯 Project Objectives
 
-## 🎯 Project Goals
-
-- Develop a flexible and maintainable discussion platform
-- Implement robust user interaction mechanisms
-- Ensure high-quality code with rigorous testing and architectural best practices
+- 🚀 Create a highly adaptable discussion platform
+- 🤝 Develop intuitive user interaction mechanisms
+- ✅ Guarantee code quality through rigorous testing and architectural excellence
 
 ## ✨ Key Features
 
-### 🏗️ Architectural Foundations
+### 🏗️ Architectural Excellence
 
-- **Clean Architecture**: Modular design ensuring separation of concerns
-- **Domain-Driven Design**: Focus on core business logic and domain modeling
-- **Functional Error Handling**: Creating resilient and user-friendly experiences
+- Modular Clean Architecture design
+- Domain-Driven Design with focus on core business logic
+- Robust functional error handling strategies
 
-### 💬 Core Functionalities
+### 💬 Core Capabilities
 
-1. **Comprehensive Q&A System**
-   - Intuitive question and answer interfaces
-   - Advanced search and filtering capabilities
+- **Intelligent Q&A System**
+  - Advanced search and filtering
+  - Comprehensive user interaction tools
 
-2. **Advanced Commenting Infrastructure**
-   - Nested comments
-   - Rich text support
-   - User mention functionality
+- **Sophisticated Commenting Infrastructure**
+  - Nested comment threads
+  - Rich text editing
+  - User mention functionality
 
-3. **Flexible User Management**
-   - Differentiated roles (Students, Instructors)
-   - Granular permission controls
+- **Flexible User Management**
+  - Role-based access control
+  - Granular permission systems
 
-4. **Authentication System**
-   - Secure user registration and login
-   - JWT-based authentication
-   - Role-based access control
+- **Secure Authentication**
+  - JWT-based authentication
+  - Multi-role support
 
-5. **Content Interaction Mechanisms**
-   - Voting system
-   - Reputation points
-   - Content moderation tools
+- **Content Interaction Mechanisms**
+  - Comprehensive voting system
+  - Reputation point tracking
+  - Advanced content moderation
+
+# 💬 Forum: Advanced Discussion Platform
+
+## 🌟 Project Overview
+
+A cutting-edge discussion platform leveraging modern software engineering principles to create a scalable, robust online community interaction system.
 
 ## 🛠 Technology Stack
 
-### Languages & Frameworks
+| Category | Technologies |        |
+|----------|--------------|--------|
+| **Languages** | TypeScript, Node.js | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white) |
+| **Web Framework** | Express.js | ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge) |
+| **Database** | PostgreSQL, Prisma ORM | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) |
+| **Testing** | Vitest, ESLint | ![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white) |
+| **DevOps** | Docker, Git, GitHub | ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) |
 
-- **Language**: TypeScript
-- **Runtime**: Node.js
-- **Web Framework**: Express.js
-
-### Database Ecosystem
-
-- **Database**: PostgreSQL
-- **ORM**: Prisma
-
-### Testing & Quality Assurance
-
-- **Testing Framework**: Vitest
-- **Linting**: ESLint
-- **Coverage Reporting**: Built-in test coverage tools
-
-### DevOps & Infrastructure
-
-- **Containerization**: Docker
-- **Version Control**: Git
-- **Repository**: GitHub
-
-## 📂 Project Structure
-
-```
-forum/
-│
-├── src/
-│   ├── domain/           # Core business logic
-│   │   ├── entities/     # Domain models
-│   │   └── repositories/ # Data access interfaces
-│   │
-│   ├── application/      # Use cases and application logic
-│   │
-│   └── infra/            # Infrastructure implementations
-│       ├── database/     # Database configurations
-│       └── http/         # API route handlers
-│
-└── tests/                # Comprehensive test suites
-```
-
-## 🚀 Getting Started
+## 🚀 Quick Start Guide
 
 ### Prerequisites
 
@@ -101,51 +67,35 @@ forum/
 - PostgreSQL
 - Docker (recommended)
 
-### Installation Steps
-
-1. Clone the repository
-
-   ```bash
-   git clone https://github.com/rafaumeu/forum
-   cd forum
-   ```
-
-2. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-3. Configure environment variables
-
-   ```bash
-   cp .env.example .env
-   ```
-
-4. Set up database
-
-   ```bash
-   # Using Docker
-   docker-compose up -d
-
-   # Initialize Prisma
-   npx prisma generate
-   npx prisma migrate dev
-   ```
-
-5. Run the application
-
-   ```bash
-   npm run dev
-   ```
-
-## 🧪 Testing
+### Setup Instructions
 
 ```bash
-# Run all tests
+# Clone repository
+git clone https://github.com/rafaumeu/forum
+cd forum
+
+# Install dependencies
+npm install
+
+# Configure environment
+cp .env.example .env
+
+# Initialize database
+docker-compose up -d
+npx prisma generate
+npx prisma migrate dev --name init
+
+# Launch application
+npm run start:dev
+```
+
+## 🧪 Testing Workflow
+
+```bash
+# Run comprehensive test suite
 npm test
 
-# Watch mode for development
+# Development watch mode
 npm run test:watch
 
 # Generate coverage report
@@ -154,77 +104,36 @@ npm run test:coverage
 
 ## 🗺️ Development Roadmap
 
-### Phase 1: Core Domain ✅
+### ✅ Completed Phases
 
-- [x] Implementation of core entities
+- [x] Core domain implementation
 - [x] Base repository design
 - [x] Initial use case development
 - [x] Comprehensive unit testing
+- [x] Infrastructure setup
+- [x] API route handlers
+- [x] Authentication integration
 
-### Phase 2: Infrastructure 🚧
+### 🔜 Upcoming Phases
 
-- [x] PostgreSQL integration
-- [x] Prisma ORM configuration
-- [x] Express.js route implementation
-- [x] Docker containerization
+- [ ] User interface design
+- [ ] Responsive layout implementation
+- [ ] Accessibility optimization
+- [ ] CI/CD pipeline configuration
+- [ ] Production deployment
 
-### Phase 3: Advanced Features 📍
+## 📞 Support & Community
 
-- [x] Authentication system
-- [x] Complete CRUD operations
-- [x] Enhanced commenting mechanisms
-- [x] Content voting and reputation system
-- [ ] Implementation of controllers
-- [ ] Support for file uploads
-- [ ] Establishing relationships between entities
-- [ ] Implementing domain caching strategies
+**Got questions or suggestions?**
 
-## 🤝 Contributing
+- GitHub Issues: [Project Issues](https://github.com/rafaumeu/forum/issues)
+- Contact Maintainer: [Rafael's GitHub](https://github.com/rafaumeu)
 
-Contributions are welcome! Please follow these guidelines:
+## 📄 Licensing
 
-1. Fork the repository
-2. Create a feature branch
-
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-
-3. Commit your changes
-
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-
-4. Push to the branch
-
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-
-5. Open a Pull Request
-
-### Contribution Guidelines
-
-- Adhere to Domain-Driven Design principles
-- Maintain high test coverage (>80%)
-- Follow project coding standards
-- Document significant changes
-
-## 🔒 Security Recommendations
-
-- Never commit `.env` file to version control
-- Use strong, unique secrets
-- Rotate keys periodically
-- Limit environment variable access
-
-## 📄 License
-
-Distributed under the MIT License. See LICENSE for more information.
-
----
+MIT License. Full details available in the LICENSE file.
 
 <p align="center">
-    Crafted with ❤️ by Rafael<br>
-    <a href="https://github.com/rafaumeu">@rafaumeu</a>
+    Crafted with 🔧 Precision & ❤️ Passion<br>
+    <strong>@rafaumeu</strong> - Innovating Digital Communities
 </p>
