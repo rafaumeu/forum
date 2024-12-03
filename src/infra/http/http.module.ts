@@ -1,5 +1,6 @@
 import { AnswerQuestionUseCase } from '@/domain/forum/application/use-cases/answer-question'
 import { AuthenticateStudentUseCase } from '@/domain/forum/application/use-cases/authenticate-student'
+import { ChooseQuestionBestAnswerUseCase } from '@/domain/forum/application/use-cases/choose-question-best-answer'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
 import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
 import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/delete-question'
@@ -13,6 +14,7 @@ import { CryptographyModule } from '@/infra/cryptography/cryptography.module'
 import { DatabaseModule } from '@/infra/database/database.module'
 import { AnswerQuestionController } from '@/infra/http/controllers/answer-question.controller'
 import { AuthenticateController } from '@/infra/http/controllers/authenticate.controller'
+import { ChooseQuestionBestAnswerController } from '@/infra/http/controllers/choose-question-best-answer.controller'
 import { CreateAccountController } from '@/infra/http/controllers/create-account.controller'
 import { CreateQuestionController } from '@/infra/http/controllers/create-question.controller'
 import { DeleteAnswerController } from '@/infra/http/controllers/delete-answer.controller'
@@ -39,6 +41,7 @@ import { Module } from '@nestjs/common'
     EditAnswerController,
     DeleteAnswerController,
     FetchQuestionsAnswersController,
+    ChooseQuestionBestAnswerController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -52,6 +55,7 @@ import { Module } from '@nestjs/common'
     EditAnswerUseCase,
     DeleteAnswerUseCase,
     FetchQuestionsAnswerUseCase,
+    ChooseQuestionBestAnswerUseCase,
   ],
 })
 export class HttpModule {}
