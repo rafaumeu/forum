@@ -5,6 +5,7 @@ import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete
 import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/delete-question'
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
 import { EditQuestionUseCase } from '@/domain/forum/application/use-cases/edit-question'
+import { FetchQuestionsAnswerUseCase } from '@/domain/forum/application/use-cases/fetch-question-answer'
 import { FetchRecentQuestionsUseCase } from '@/domain/forum/application/use-cases/fetch-recent-questions'
 import { GetQuestionBySlugUseCase } from '@/domain/forum/application/use-cases/get-question-by-slug'
 import { RegisterStudentUseCase } from '@/domain/forum/application/use-cases/register-student'
@@ -18,6 +19,7 @@ import { DeleteAnswerController } from '@/infra/http/controllers/delete-answer.c
 import { DeleteQuestionController } from '@/infra/http/controllers/delete-question.controller'
 import { EditAnswerController } from '@/infra/http/controllers/edit-answer.controller'
 import { EditQuestionController } from '@/infra/http/controllers/edit-question.controller'
+import { FetchQuestionsAnswersController } from '@/infra/http/controllers/fetch-answer.controller'
 import { FetchRecentQuestionsController } from '@/infra/http/controllers/fetch-recent-questions.controller'
 import { GetQuestionBySlugController } from '@/infra/http/controllers/get-question-by-slug.controller'
 
@@ -36,6 +38,7 @@ import { Module } from '@nestjs/common'
     AnswerQuestionController,
     EditAnswerController,
     DeleteAnswerController,
+    FetchQuestionsAnswersController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -48,6 +51,7 @@ import { Module } from '@nestjs/common'
     AnswerQuestionUseCase,
     EditAnswerUseCase,
     DeleteAnswerUseCase,
+    FetchQuestionsAnswerUseCase,
   ],
 })
 export class HttpModule {}
