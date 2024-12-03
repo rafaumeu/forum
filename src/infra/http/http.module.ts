@@ -5,6 +5,7 @@ import { CommentOnAnswersUseCase } from '@/domain/forum/application/use-cases/co
 import { CommentOnQuestionsUseCase } from '@/domain/forum/application/use-cases/comment-on-question'
 import { CreateQuestionUseCase } from '@/domain/forum/application/use-cases/create-question'
 import { DeleteAnswerUseCase } from '@/domain/forum/application/use-cases/delete-answer'
+import { DeleteAnswerCommentsUseCase } from '@/domain/forum/application/use-cases/delete-answer-comment'
 import { DeleteQuestionUseCase } from '@/domain/forum/application/use-cases/delete-question'
 import { DeleteQuestionCommentsUseCase } from '@/domain/forum/application/use-cases/delete-question-coment'
 import { EditAnswerUseCase } from '@/domain/forum/application/use-cases/edit-answer'
@@ -22,6 +23,7 @@ import { CommentOnAnswerController } from '@/infra/http/controllers/comment-on-a
 import { CommentOnQuestionController } from '@/infra/http/controllers/comment-on-question.controller'
 import { CreateAccountController } from '@/infra/http/controllers/create-account.controller'
 import { CreateQuestionController } from '@/infra/http/controllers/create-question.controller'
+import { DeleteAnswerCommentController } from '@/infra/http/controllers/delete-answer-comment.controller'
 import { DeleteAnswerController } from '@/infra/http/controllers/delete-answer.controller'
 import { DeleteQuestionCommentController } from '@/infra/http/controllers/delete-question-comment.controller'
 import { DeleteQuestionController } from '@/infra/http/controllers/delete-question.controller'
@@ -51,6 +53,7 @@ import { Module } from '@nestjs/common'
     CommentOnQuestionController,
     DeleteQuestionCommentController,
     CommentOnAnswerController,
+    DeleteAnswerCommentController,
   ],
   providers: [
     CreateQuestionUseCase,
@@ -68,6 +71,7 @@ import { Module } from '@nestjs/common'
     CommentOnQuestionsUseCase,
     DeleteQuestionCommentsUseCase,
     CommentOnAnswersUseCase,
+    DeleteAnswerCommentsUseCase,
   ],
 })
 export class HttpModule {}
