@@ -43,13 +43,22 @@ describe('On question best answer chosen', () => {
     sendNotificationExecuteSpy = vi.spyOn(sut, 'execute')
     new OnQuestionBestAnswerChosen(inMemoryAnswersRepository, sut)
   })
-  it('should send a notification when a question has new best answer', async () => {
+  it('should send a notification when topic has new best answer chosen', async () => {
     const question = makeQuestion()
     const answer = makeAnswer({ questionId: question.id })
+
     inMemoryQuestionsRepository.create(question)
     inMemoryAnswersRepository.create(answer)
+
     question.bestAnswerId = answer.id
+
     inMemoryQuestionsRepository.save(question)
+    await sut.execute({
+      recipientId: question.authorId.toString(),
+      title: question.title,
+      content: answer.excerpt,
+    })
+
     await waitFor(() => {
       expect(sendNotificationExecuteSpy).toHaveBeenCalled()
     })
