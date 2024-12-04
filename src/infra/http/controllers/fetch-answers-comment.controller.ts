@@ -1,7 +1,7 @@
 import { FetchAnswerCommentsUseCase } from '@/domain/forum/application/use-cases/fetch-answers-comment'
 import { ZodValidationPipe } from '@/infra/http/pipes/zod-validation-pipe'
+import { CommentWithAuthorPresenter } from '@/infra/http/presenter/comment-with-author-presenter'
 
-import { CommentPresenter } from '@/infra/http/presenter/comment-presenter'
 import {
   BadRequestException,
   Controller,
@@ -36,8 +36,8 @@ export class FetchAnswersCommentsController {
     if (result.isLeft()) {
       throw new BadRequestException()
     }
-    const answerComments = result.value.answersComment
+    const answerComments = result.value.comments
 
-    return { comments: answerComments.map(CommentPresenter.toHTTP) }
+    return { comments: answerComments.map(CommentWithAuthorPresenter.toHTTP) }
   }
 }
