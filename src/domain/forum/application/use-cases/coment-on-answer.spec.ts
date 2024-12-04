@@ -3,11 +3,14 @@ import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/erro
 import { makeAnswer } from 'test/factories/make-answer'
 import { InMemoryAnswerCommentsRepository } from 'test/repositories/in-memory-answer-comment-repository'
 import { InMemoryAnswersRepository } from 'test/repositories/in-memory-answer-repository'
+import { InMemoryStudentsRepository } from 'test/repositories/in-memory-students-repository'
 import { InMemoryAnswerAttachmentsRepository } from '../../../../../test/repositories/in-memory-answer-attachment.repository'
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryAnswerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
+
+let inMemoryStudentsRepository: InMemoryStudentsRepository
 let sut: CommentOnAnswersUseCase
 describe('Comment on answer', () => {
   beforeEach(() => {
@@ -16,7 +19,11 @@ describe('Comment on answer', () => {
     inMemoryAnswersRepository = new InMemoryAnswersRepository(
       inMemoryAnswerAttachmentsRepository,
     )
-    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository()
+
+    inMemoryStudentsRepository = new InMemoryStudentsRepository()
+    inMemoryAnswerCommentsRepository = new InMemoryAnswerCommentsRepository(
+      inMemoryStudentsRepository,
+    )
     sut = new CommentOnAnswersUseCase(
       inMemoryAnswersRepository,
       inMemoryAnswerCommentsRepository,
