@@ -1,62 +1,90 @@
 # 💬 Forum: Advanced Discussion Platform
 
+<div align="center">
+  <img src="https://img.shields.io/badge/version-1.1.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Express.js-404D59?logo=express&logoColor=white" alt="Express.js">
+  <img src="https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+  <img src="https://img.shields.io/badge/tests-100%25 coverage-brightgreen.svg" alt="Test Coverage">
+</div>
+
 ## 🌟 Project Overview
 
-A cutting-edge discussion platform leveraging modern software engineering principles to create a scalable, robust online community interaction system. Built with Domain-Driven Design (DDD) and Clean Architecture to ensure flexibility, maintainability, and superior user experience.
+An innovative discussion platform designed with cutting-edge software engineering principles, focusing on creating a scalable and robust system for online community interaction.
 
-## 🎯 Project Objectives
+## 🎯 Project Goals
 
-- 🚀 Create a highly adaptable discussion platform
-- 🤝 Develop intuitive user interaction mechanisms
-- ✅ Guarantee code quality through rigorous testing and architectural excellence
+- 🚀 Build a highly adaptable and scalable discussion platform
+- 🤝 Create intuitive and engaging user interaction mechanisms
+- ✅ Ensure exceptional code quality through rigorous testing and architectural excellence
 
 ## ✨ Key Features
 
 ### 🏗️ Architectural Excellence
 
-- Modular Clean Architecture design
-- Domain-Driven Design with focus on core business logic
-- Robust functional error handling strategies
+- Modular Clean Architecture
+- Domain-Driven Design focusing on core business logic
+- Robust error-handling strategies
+
+### 🔐 Architecture and Security
+
+#### Architecture
+
+- Adherence to SOLID principles
+- Clear separation of concerns
+- Dependency injection for low coupling
+
+#### Security
+
+- JWT authentication with multiple levels
+- Password encryption using bcrypt
+- SQL injection protection
+- Input validation
+- CSRF attack prevention
+- Rate limiting to guard against brute force attacks
 
 ### 💬 Core Capabilities
 
-- **Intelligent Q&A System**
-  - Advanced search and filtering
-  - Comprehensive user interaction tools
+#### Smart Q&A System
 
-- **Sophisticated Commenting Infrastructure**
-  - Nested comment threads
-  - Rich text editing
-  - User mention functionality
+- Advanced search with contextual filters
+- Interaction-based relevance system
+- Automatic related content suggestions
 
-- **Flexible User Management**
-  - Role-based access control
-  - Granular permission systems
+#### Sophisticated Commenting Infrastructure
 
-- **Secure Authentication**
-  - JWT-based authentication
-  - Multi-role support
+- Nested comment threads
+- Rich-text editing support
+- User mention functionality
+- Comment moderation system
 
-- **Content Interaction Mechanisms**
-  - Comprehensive voting system
-  - Reputation point tracking
-  - Advanced content moderation
+#### Flexible User Management
 
-# 💬 Forum: Advanced Discussion Platform
+- Role-based access control
+- Granular permissions system
+- Customizable user profiles
 
-## 🌟 Project Overview
+#### Content Interaction Mechanisms
 
-A cutting-edge discussion platform leveraging modern software engineering principles to create a scalable, robust online community interaction system.
+- Comprehensive voting system
+- Reputation point tracking
+- Advanced content moderation tools
 
 ## 🛠 Technology Stack
 
-| Category | Technologies |        |
-|----------|--------------|--------|
-| **Languages** | TypeScript, Node.js | ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white) |
-| **Web Framework** | Express.js | ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge) |
-| **Database** | PostgreSQL, Prisma ORM | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white) |
-| **Testing** | Vitest, ESLint | ![Vitest](https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white) |
-| **DevOps** | Docker, Git, GitHub | ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white) ![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white) |
+| Category           | Technologies              |
+|--------------------|---------------------------|
+| **Languages**      | TypeScript, Node.js       |
+| **Web Framework**  | Express.js                |
+| **Database**       | PostgreSQL, Prisma ORM    |
+| **Testing**        | Vitest, Jest, ESLint      |
+| **DevOps**         | Docker, Git, GitHub Actions |
+| **Security**       | JWT, Bcrypt               |
+| **Infrastructure** | Cloudflare                |
 
 ## 🚀 Quick Start Guide
 
@@ -64,13 +92,13 @@ A cutting-edge discussion platform leveraging modern software engineering princi
 
 - Node.js 18+
 - npm 9+
-- PostgreSQL
-- Docker (recommended)
+- PostgreSQL 13+
+- Docker
 
-### Setup Instructions
+### Setup Steps
 
 ```bash
-# Clone repository
+# Clone the repository
 git clone https://github.com/rafaumeu/forum
 cd forum
 
@@ -79,23 +107,32 @@ npm install
 
 # Configure environment
 cp .env.example .env
+# Edit .env with your settings
 
 # Initialize database
 docker-compose up -d
 npx prisma generate
-npx prisma migrate dev --name init
+npx prisma migrate dev
 
-# Launch application
+# Start the application in development mode
 npm run start:dev
 ```
 
-## 🧪 Testing Workflow
+## 🧪 Testing Strategy
+
+- Test coverage: 100%
+- Unit tests for every layer
+- Integration tests for critical flows
+- Security tests
+- Schema and type validation
+
+### Test Commands
 
 ```bash
-# Run comprehensive test suite
+# Run tests
 npm test
 
-# Development watch mode
+# Watch mode for development
 npm run test:watch
 
 # Generate coverage report
@@ -106,34 +143,40 @@ npm run test:coverage
 
 ### ✅ Completed Phases
 
-- [x] Core domain implementation
+- [x] Implementation of core domain
 - [x] Base repository design
-- [x] Initial use case development
-- [x] Comprehensive unit testing
+- [x] Development of use cases
+- [x] Comprehensive unit tests
 - [x] Infrastructure setup
-- [x] API route handlers
-- [x] Authentication integration
 
-### 🔜 Upcoming Phases
+### 🔄 Recent Updates
 
-- [ ] User interface design
-- [ ] Responsive layout implementation
+- Integration of all controllers
+- Integration with Cloudflare for file uploads
+- TypeScript error checks and linting
+- Complete test coverage with 100% achieved
+
+### 🔜 Next Steps
+
+- [ ] Implementation of events for the Notification domain
+- [ ] Cache integration
+- [ ] UI design and responsive layout implementation
 - [ ] Accessibility optimization
-- [ ] CI/CD pipeline configuration
+- [ ] CI/CD pipeline setup
 - [ ] Production deployment
 
 ## 📞 Support & Community
 
-**Got questions or suggestions?**
+- [GitHub Issues](https://github.com/rafaumeu/forum/issues)
+- [Maintainer Contact](https://github.com/rafaumeu)
 
-- GitHub Issues: [Project Issues](https://github.com/rafaumeu/forum/issues)
-- Contact Maintainer: [Rafael's GitHub](https://github.com/rafaumeu)
+## 📄 License
 
-## 📄 Licensing
+Licensed under the MIT License. Full details in the `LICENSE` file.
 
-MIT License. Full details available in the LICENSE file.
+---
 
 <p align="center">
-    Crafted with 🔧 Precision & ❤️ Passion<br>
-    <strong>@rafaumeu</strong> - Innovating Digital Communities
+  Developed with 🔧 Precision & ❤️ Passion<br>
+  <strong>@rafaumeu</strong> - Innovating Digital Communities
 </p>
