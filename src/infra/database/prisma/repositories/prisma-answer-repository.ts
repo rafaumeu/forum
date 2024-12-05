@@ -1,15 +1,15 @@
 import { PaginationParams } from '@/core/repositories/pagination-params'
+import { AnswerAttachmentsRepository } from '@/domain/forum/application/repositories/answer-attachments-repository'
 import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
 import { Answer } from '@/domain/forum/enterprise/entities/answer'
 import { PrismaAnswerMapper } from '@/infra/database/mappers/prisma-answer-mapper'
 import { PrismaService } from '@/infra/database/prisma/prisma.service'
-import { PrismaAnswerAttachmentsRepository } from '@/infra/database/prisma/repositories/prisma-answer-attachments-repository'
 import { Injectable } from '@nestjs/common'
 @Injectable()
 export class PrismaAnswerRepository implements AnswersRepository {
   constructor(
     private prisma: PrismaService,
-    private answerAttachmentsRepository: PrismaAnswerAttachmentsRepository,
+    private answerAttachmentsRepository: AnswerAttachmentsRepository,
   ) {}
 
   async findById(id: string): Promise<Answer | null> {
