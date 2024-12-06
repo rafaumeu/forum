@@ -1,4 +1,4 @@
-import { OnAnserCreated } from '@/domain/notification/application/subscribers/on-answer-created'
+import { OnAnswerCreated } from '@/domain/notification/application/subscribers/on-answer-created'
 import {
   SendNotificationUseCase,
   SendNotificationUseCaseRequest,
@@ -50,13 +50,14 @@ describe('On answer created', () => {
     inMemoryNotificationsRepository = new InMemoryNotificationsRepository()
     sut = new SendNotificationUseCase(inMemoryNotificationsRepository)
     sendNotificationExecuteSpy = vi.spyOn(sut, 'execute')
-    new OnAnserCreated(inMemoryQuestionsRepository, sut)
+    new OnAnswerCreated(inMemoryQuestionsRepository, sut)
   })
   it('should send a notification when an answer is created', async () => {
     const question = makeQuestion()
     const answer = makeAnswer({ questionId: question.id })
     inMemoryQuestionsRepository.create(question)
     inMemoryAnswersRepository.create(answer)
+
     await waitFor(() => {
       expect(sendNotificationExecuteSpy).toHaveBeenCalled()
     })
