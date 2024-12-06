@@ -1,16 +1,14 @@
 # 💬 Forum: Advanced Discussion Platform
 
-<div align="center">
-  <img src="https://img.shields.io/badge/version-1.1.0-blue.svg" alt="Version">
-  <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
-  <img src="https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white" alt="TypeScript">
-  <img src="https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white" alt="Node.js">
-  <img src="https://img.shields.io/badge/Express.js-404D59?logo=express&logoColor=white" alt="Express.js">
-  <img src="https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white" alt="Docker">
-  <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-  <img src="https://img.shields.io/badge/tests-100%25 coverage-brightgreen.svg" alt="Test Coverage">
-</div>
+![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)
+![Redis](https://img.shields.io/badge/Redis-DC382D?logo=redis&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Test Coverage](https://img.shields.io/badge/tests-100%25%20coverage-brightgreen.svg)
 
 ## 🌟 Project Overview
 
@@ -28,6 +26,8 @@ An innovative discussion platform designed with cutting-edge software engineerin
 
 - Modular Clean Architecture
 - Domain-Driven Design focusing on core business logic
+- Event-Driven Architecture
+- Distributed Caching with Redis
 - Robust error-handling strategies
 
 ### 🔐 Architecture and Security
@@ -37,6 +37,8 @@ An innovative discussion platform designed with cutting-edge software engineerin
 - Adherence to SOLID principles
 - Clear separation of concerns
 - Dependency injection for low coupling
+- Event-driven domain model
+- Intelligent caching strategies
 
 #### Security
 
@@ -54,6 +56,7 @@ An innovative discussion platform designed with cutting-edge software engineerin
 - Advanced search with contextual filters
 - Interaction-based relevance system
 - Automatic related content suggestions
+- Cached query results for improved performance
 
 #### Sophisticated Commenting Infrastructure
 
@@ -61,6 +64,7 @@ An innovative discussion platform designed with cutting-edge software engineerin
 - Rich-text editing support
 - User mention functionality
 - Comment moderation system
+- Real-time cache invalidation
 
 #### Flexible User Management
 
@@ -73,18 +77,21 @@ An innovative discussion platform designed with cutting-edge software engineerin
 - Comprehensive voting system
 - Reputation point tracking
 - Advanced content moderation tools
+- Performance-optimized with distributed caching
 
 ## 🛠 Technology Stack
 
-| Category           | Technologies              |
-|--------------------|---------------------------|
-| **Languages**      | TypeScript, Node.js       |
-| **Web Framework**  | Express.js                |
-| **Database**       | PostgreSQL, Prisma ORM    |
-| **Testing**        | Vitest, Jest, ESLint      |
-| **DevOps**         | Docker, Git, GitHub Actions |
-| **Security**       | JWT, Bcrypt               |
-| **Infrastructure** | Cloudflare                |
+| Category | Technologies |
+|----------|--------------|
+| **Languages** | TypeScript, Node.js |
+| **Web Framework** | NestJS |
+| **Database** | PostgreSQL, Prisma ORM |
+| **Caching** | Redis, ioredis |
+| **Testing** | Vitest, Jest, Supertest |
+| **DevOps** | Docker, Git, GitHub Actions |
+| **Security** | JWT, Bcrypt, Passport |
+| **Events** | Domain Events Pattern |
+| **Infrastructure** | Cloudflare |
 
 ## 🚀 Quick Start Guide
 
@@ -93,6 +100,7 @@ An innovative discussion platform designed with cutting-edge software engineerin
 - Node.js 18+
 - npm 9+
 - PostgreSQL 13+
+- Redis 6+
 - Docker
 
 ### Setup Steps
@@ -109,7 +117,7 @@ npm install
 cp .env.example .env
 # Edit .env with your settings
 
-# Initialize database
+# Initialize database and cache
 docker-compose up -d
 npx prisma generate
 npx prisma migrate dev
@@ -123,6 +131,9 @@ npm run start:dev
 - Test coverage: 100%
 - Unit tests for every layer
 - Integration tests for critical flows
+- End-to-end (E2E) tests
+- Caching layer tests
+- Domain event tests
 - Security tests
 - Schema and type validation
 
@@ -148,35 +159,39 @@ npm run test:coverage
 - [x] Development of use cases
 - [x] Comprehensive unit tests
 - [x] Infrastructure setup
+- [x] Domain Events implementation
+- [x] Distributed caching system with Redis
+- [x] End-to-end testing coverage
+- [x] Event-driven notification system
 
 ### 🔄 Recent Updates
 
-- Integration of all controllers
-- Integration with Cloudflare for file uploads
-- TypeScript error checks and linting
-- Complete test coverage with 100% achieved
+- Robust Domain Events implementation
+- Redis-based distributed caching
+- Advanced E2E testing strategies
+- Notification domain events
+- Performance optimization with intelligent caching
+- Improved architectural modularity
 
 ### 🔜 Next Steps
 
-- [ ] Implementation of events for the Notification domain
-- [ ] Cache integration
-- [ ] UI design and responsive layout implementation
-- [ ] Accessibility optimization
-- [ ] CI/CD pipeline setup
-- [ ] Production deployment
+- [ ] Performance profiling and optimization
+- [ ] Advanced caching strategies
+- [ ] Microservices architecture exploration
+- [ ] GraphQL API implementation
+- [ ] Real-time features with WebSockets
+- [ ] Advanced monitoring and logging
+- [ ] Continuous performance benchmarking
 
 ## 📞 Support & Community
 
-- [GitHub Issues](https://github.com/rafaumeu/forum/issues)
-- [Maintainer Contact](https://github.com/rafaumeu)
+- GitHub Issues
+- Maintainer Contact
 
 ## 📄 License
 
-Licensed under the MIT License. Full details in the `LICENSE` file.
+Licensed under the MIT License. Full details in the LICENSE file.
 
 ---
 
-<p align="center">
-  Developed with 🔧 Precision & ❤️ Passion<br>
-  <strong>@rafaumeu</strong> - Innovating Digital Communities
-</p>
+<p align="center"> Developed with 🔧 Precision & ❤️ Passion<br> <strong>@rafaumeu</strong> - Innovating Digital Communities </p>
