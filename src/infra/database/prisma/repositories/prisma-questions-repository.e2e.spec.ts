@@ -56,9 +56,16 @@ describe('Prisma questions Repository (E2E)', () => {
     const slug = question.slug.value
     const questionDetails = await questionRepository.findDetailsBySlug(slug)
     const cached = await cacheRepository.get(`question:${slug}:details`)
-    expect(cached).toEqual(JSON.stringify(questionDetails))
+    if (!cached) {
+      throw new Error('Cache miss')
+    }
+    expect(JSON.parse(cached)).toEqual(
+      expect.objectContaining({
+        id: questionDetails?.questionId.toString(),
+      }),
+    )
   })
-  it('should retunr cached question details on subsequent calls', async () => {
+  it('should return cached question details on subsequent calls', async () => {
     const user = await studentFactory.makePrismaStudent()
     const question = await questionFactory.makePrismaQuestion({
       authorId: user.id,
@@ -70,16 +77,21 @@ describe('Prisma questions Repository (E2E)', () => {
       attachmentId: attachment.id,
     })
     const slug = question.slug.value
-    const cached = await cacheRepository.set(
-      `question:${slug}:details`,
-      JSON.stringify({
-        empty: true,
+    let cached = await cacheRepository.get(`question:${slug}:details`)
+    expect(cached).toBeNull()
+    await questionRepository.findDetailsBySlug(slug)
+    cached = await cacheRepository.get(`question:${slug}:details`)
+    expect(cached).not.toBeNull()
+    const questionDetails = await questionRepository.findDetailsBySlug(slug)
+    if (!cached) {
+      throw new Error('Cache miss')
+    }
+
+    expect(JSON.parse(cached)).toEqual(
+      expect.objectContaining({
+        id: questionDetails?.questionId.toString(),
       }),
     )
-    const questionDetails = await questionRepository.findDetailsBySlug(slug)
-    expect(questionDetails).toEqual({
-      empty: true,
-    })
   })
   it('should reset question details cache when saving the question', async () => {
     const user = await studentFactory.makePrismaStudent()
