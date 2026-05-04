@@ -1,3 +1,7 @@
+<div align="center">
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=FF0080&height=180&section=header&text=Forum%20DDD&fontSize=42&fontColor=fff&animation=fadeIn&fontAlignY=35&desc=Clean%20Architecture%20%26%20Domain-Driven%20Design&descSize=18&descAlignY=52"/>
+</div>
+
 # Forum Domain Layer — DDD & Clean Architecture Reference Implementation
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6.svg)](https://www.typescriptlang.org/)
@@ -294,3 +298,8 @@ One runtime dependency (`dayjs`). Everything else is dev tooling.
 ## License
 
 MIT
+
+<div align="center">
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=FF0080&height=100&section=footer"/>
+  <br/><sub>Built with ❤️ by <a href="https://github.com/rafaumeu">Rafael Zendron</a></sub>
+</div>
