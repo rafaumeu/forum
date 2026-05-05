@@ -4,11 +4,11 @@
 
 # Forum Domain Layer — DDD & Clean Architecture Reference Implementation
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6.svg)](https://www.typescriptlang.org/)
-[![Vitest](https://img.shields.io/badge/Vitest-2.1-6E9F18.svg)](https://vitest.dev/)
-[![DDD](https://img.shields.io/badge/Pattern-Domain_Driven_Design-orange.svg)](https://en.wikipedia.org/wiki/Domain-driven_design)
-[![Clean Architecture](https://img.shields.io/badge/Pattern-Clean_Architecture-blue.svg)](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.0-3178C6.svg"/>](https://www.typescriptlang.org/)
+[<img alt="Vitest" src="https://img.shields.io/badge/Vitest-2.1-6E9F18.svg"/>](https://vitest.dev/)
+[<img alt="DDD" src="https://img.shields.io/badge/Pattern-Domain_Driven_Design-orange.svg"/>](https://en.wikipedia.org/wiki/Domain-driven_design)
+[<img alt="Clean Architecture" src="https://img.shields.io/badge/Pattern-Clean_Architecture-blue.svg"/>](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+[<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"/>](https://opensource.org/licenses/MIT)
 
 > Pure domain layer implementing a discussion forum with Domain-Driven Design, Clean Architecture, and functional error handling patterns.
 
