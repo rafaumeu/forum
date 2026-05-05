@@ -107,7 +107,10 @@ export class Question extends AggregateRoot<QuestionProps> {
   }
 
   static create(
-    props: Optional<QuestionProps, 'createdAt' | 'slug' | 'attachments' | 'tags'>,
+    props: Optional<
+      QuestionProps,
+      'createdAt' | 'slug' | 'attachments' | 'tags'
+    >,
     id?: UniqueEntityId,
   ) {
     const question = new Question(

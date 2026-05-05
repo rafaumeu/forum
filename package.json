@@ -5,9 +5,23 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "test": "turbo test",
-    "lint": "turbo lint"
+    "test:coverage": "turbo test:coverage",
+    "lint": "turbo lint",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "packages/domain/src/**/*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vitest-globals": "^1.6.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.3",
     "turbo": "^2.5.0",
     "typescript": "^5.8.0"
   },

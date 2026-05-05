@@ -2,9 +2,7 @@ import { PaginationParams } from '@/core/repositories/pagination-params'
 import { QuestionCommentsRepository } from '@/domain/forum/application/repositories/question-comment-repository'
 import { QuestionComment } from '@/domain/forum/enterprise/entities/question-comment'
 
-export class InMemoryQuestionCommentsRepository
-  implements QuestionCommentsRepository
-{
+export class InMemoryQuestionCommentsRepository implements QuestionCommentsRepository {
   async findManyByQuestionId(
     questionId: string,
     { page }: PaginationParams,

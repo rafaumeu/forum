@@ -40,7 +40,9 @@ export class FetchPopularQuestionsUseCase {
 
     questionsWithAnswerCount.sort((a, b) => b.answerCount - a.answerCount)
 
-    const sortedQuestions = questionsWithAnswerCount.map((item) => item.question)
+    const sortedQuestions = questionsWithAnswerCount.map(
+      (item) => item.question,
+    )
 
     return right({ questions: sortedQuestions })
   }
