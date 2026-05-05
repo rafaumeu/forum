@@ -1,24 +1,39 @@
 name: CI
+
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
+    branches: [main]
+
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
+
 jobs:
   quality:
+    name: Lint + TypeCheck + Test (100% coverage)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci 2>/dev/null || npm install
-      - run: npx tsc --noEmit 2>/dev/null || true
-      - run: npm run lint --if-present
-      - run: npm run build --if-present
-      - run: npm test --if-present
+          cache: pnpm
 
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: TypeCheck
+        run: cd packages/domain && pnpm exec tsc --noEmit
+
+      - name: Test with Coverage (100% threshold)
+        run: pnpm test:coverage

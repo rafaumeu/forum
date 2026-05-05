@@ -1,0 +1,2 @@
+pnpm test
+cd packages/domain && pnpm exec tsc --noEmit
