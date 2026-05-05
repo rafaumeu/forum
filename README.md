@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=FFCA28&height=180&section=header&text=Forum%20DDD&fontSize=42&fontColor=fff&animation=fadeIn&fontAlignY=35&desc=Clean%20Architecture%20%26%20Domain-Driven%20Design&descSize=18&descAlignY=52"/>
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=FFCA28&height=180&section=header&text=Forum%20DDD&fontSize=42&fontColor=fff&animation=fadeIn&fontAlignY=35&desc=Clean%20Architecture%20%20and%20%20Domain-Driven%20Design&descSize=18&descAlignY=52"/>
 </div>
 
 # Forum Domain Layer — DDD & Clean Architecture Reference Implementation
@@ -305,5 +305,5 @@ MIT
 </div>
 
 <p align="center">
-  [![Use this template](https://img.shields.io/badge/Use_This_Template-FFCA28?style=for-the-badge&logo=github&logoColor=white)](https://github.com/rafaumeu/forum/generate)
+  <a href="https://github.com/rafaumeu/forum/generate"><img src="https://img.shields.io/badge/Use_This_Template-FFCA28?style=for-the-badge&logo=github&logoColor=white" alt="Use this template"/></a>
 </p>
