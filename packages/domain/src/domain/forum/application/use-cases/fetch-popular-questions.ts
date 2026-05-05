@@ -1,18 +1,18 @@
-import { Either, right } from "@/core/either";
-import { AnswersRepository } from "@/domain/forum/application/repositories/answers-repository";
-import { QuestionsRepository } from "@/domain/forum/application/repositories/questions-repository";
-import { Question } from "@/domain/forum/enterprise/entities/question";
+import { Either, right } from '@/core/either'
+import { AnswersRepository } from '@/domain/forum/application/repositories/answers-repository'
+import { QuestionsRepository } from '@/domain/forum/application/repositories/questions-repository'
+import { Question } from '@/domain/forum/enterprise/entities/question'
 
 interface FetchPopularQuestionsUseCaseRequest {
-  page: number;
+  page: number
 }
 
 type FetchPopularQuestionsUseCaseResponse = Either<
   null,
   {
-    questions: Question[];
+    questions: Question[]
   }
->;
+>
 
 export class FetchPopularQuestionsUseCase {
   constructor(
@@ -23,27 +23,27 @@ export class FetchPopularQuestionsUseCase {
   async execute({
     page,
   }: FetchPopularQuestionsUseCaseRequest): Promise<FetchPopularQuestionsUseCaseResponse> {
-    const questions = await this.questionsRepository.findManyPopular(page);
+    const questions = await this.questionsRepository.findManyPopular(page)
 
     const questionsWithAnswerCount = await Promise.all(
       questions.map(async (question) => {
         const answers = await this.answersRepository.findManyByQuestionsId(
           question.id.toString(),
           { page: 1 },
-        );
+        )
         return {
           question,
           answerCount: answers.length,
-        };
+        }
       }),
-    );
+    )
 
-    questionsWithAnswerCount.sort((a, b) => b.answerCount - a.answerCount);
+    questionsWithAnswerCount.sort((a, b) => b.answerCount - a.answerCount)
 
     const sortedQuestions = questionsWithAnswerCount.map(
       (item) => item.question,
-    );
+    )
 
-    return right({ questions: sortedQuestions });
+    return right({ questions: sortedQuestions })
   }
 }
