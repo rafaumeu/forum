@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 
 import { AggregateRoot } from '@/core/entities/aggregate-root'
 import { QuestionAttachmentList } from '@/domain/forum/enterprise/entities/question-attachment-list'
+import { QuestionTagList } from '@/domain/forum/enterprise/entities/question-tag-list'
 
 import { QuestionBestAnswerChosenEvent } from '@/domain/forum/enterprise/events/question-best-answer-chosen-event'
 import { Slug } from './value-objects/slug'
@@ -15,6 +16,7 @@ export interface QuestionProps {
   content: string
   slug: Slug
   attachments: QuestionAttachmentList
+  tags: QuestionTagList
   createdAt: Date
   updatedAt?: Date
 }
@@ -39,6 +41,15 @@ export class Question extends AggregateRoot<QuestionProps> {
 
   get updatedAt() {
     return this.props.updatedAt
+  }
+
+  get tags() {
+    return this.props.tags
+  }
+
+  set tags(tags: QuestionTagList) {
+    this.props.tags = tags
+    this.touch()
   }
 
   get excerpt() {
@@ -96,7 +107,7 @@ export class Question extends AggregateRoot<QuestionProps> {
   }
 
   static create(
-    props: Optional<QuestionProps, 'createdAt' | 'slug' | 'attachments'>,
+    props: Optional<QuestionProps, 'createdAt' | 'slug' | 'attachments' | 'tags'>,
     id?: UniqueEntityId,
   ) {
     const question = new Question(
@@ -104,6 +115,7 @@ export class Question extends AggregateRoot<QuestionProps> {
         ...props,
         slug: props.slug ?? Slug.createFromText(props.title),
         attachments: props.attachments ?? new QuestionAttachmentList(),
+        tags: props.tags ?? new QuestionTagList(),
         createdAt: props.createdAt ?? new Date(),
       },
       id,

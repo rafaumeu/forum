@@ -19,6 +19,35 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
     return questions
   }
 
+  async search(
+    keyword: string,
+    tags?: string[],
+    page: number = 1,
+  ): Promise<Question[]> {
+    const lowerKeyword = keyword.toLowerCase()
+
+    let filtered = this.items.filter((question) =>
+      question.title.toLowerCase().includes(lowerKeyword),
+    )
+
+    if (tags && tags.length > 0) {
+      filtered = filtered.filter((question) => {
+        const questionTags = question.tags.getItems().map((t) => t.value)
+        return tags.some((tag) => questionTags.includes(tag))
+      })
+    }
+
+    return filtered.slice((page - 1) * 20, page * 20)
+  }
+
+  async findManyPopular(page: number): Promise<Question[]> {
+    const questions = this.items.slice().sort((a, b) => {
+      return b.createdAt.getTime() - a.createdAt.getTime()
+    })
+
+    return questions.slice((page - 1) * 20, page * 20)
+  }
+
   async save(question: Question): Promise<void> {
     const itemIndex = this.items.findIndex((item) => item.id === question.id)
     this.items[itemIndex] = question
