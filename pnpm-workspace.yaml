@@ -1,0 +1,4 @@
+packages:
+  - apps/*
+  - packages/*
+approveBuildsFor: '@prisma/client,@prisma/engines,prisma'

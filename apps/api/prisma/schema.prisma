@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(STUDENT)
+  avatar    String?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  questions        Question[]
+  answers          Answer[]
+  questionComments QuestionComment[]
+  answerComments   AnswerComment[]
+  notifications    Notification[]
+  attachments      Attachment[]
+
+  @@map("users")
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+}
+
+model Question {
+  id           String    @id @default(cuid())
+  title        String
+  slug         String    @unique
+  content      String
+  bestAnswerId String?   @unique @map("best_answer_id")
+  authorId     String    @map("author_id")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  author      User               @relation(fields: [authorId], references: [id])
+  bestAnswer  Answer?            @relation("BestAnswer", fields: [bestAnswerId], references: [id])
+  answers     Answer[]
+  comments    QuestionComment[]
+  attachments QuestionAttachment[]
+  tags        QuestionTag[]
+
+  @@map("questions")
+}
+
+model Answer {
+  id         String   @id @default(cuid())
+  content    String
+  authorId   String   @map("author_id")
+  questionId String   @map("question_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  author      User              @relation(fields: [authorId], references: [id])
+  question    Question          @relation(fields: [questionId], references: [id])
+  comments    AnswerComment[]
+  attachments AnswerAttachment[]
+  bestAnswerFor Question?      @relation("BestAnswer")
+
+  @@map("answers")
+}
+
+model QuestionComment {
+  id         String   @id @default(cuid())
+  content    String
+  authorId   String   @map("author_id")
+  questionId String   @map("question_id")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  author   User     @relation(fields: [authorId], references: [id])
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@map("question_comments")
+}
+
+model AnswerComment {
+  id        String   @id @default(cuid())
+  content   String
+  authorId  String   @map("author_id")
+  answerId  String   @map("answer_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  author User   @relation(fields: [authorId], references: [id])
+  answer Answer @relation(fields: [answerId], references: [id])
+
+  @@map("answer_comments")
+}
+
+model Attachment {
+  id     String @id @default(cuid())
+  url    String
+  userId String @map("user_id")
+
+  user User @relation(fields: [userId], references: [id])
+  questionAttachments QuestionAttachment[]
+  answerAttachments   AnswerAttachment[]
+
+  @@map("attachments")
+}
+
+model QuestionAttachment {
+  id           String @id @default(cuid())
+  attachmentId String @map("attachment_id")
+  questionId   String @map("question_id")
+
+  attachment Attachment @relation(fields: [attachmentId], references: [id])
+  question   Question   @relation(fields: [questionId], references: [id])
+
+  @@map("question_attachments")
+}
+
+model AnswerAttachment {
+  id           String @id @default(cuid())
+  attachmentId String @map("attachment_id")
+  answerId     String @map("answer_id")
+
+  attachment Attachment @relation(fields: [attachmentId], references: [id])
+  answer     Answer     @relation(fields: [answerId], references: [id])
+
+  @@map("answer_attachments")
+}
+
+model QuestionTag {
+  id         String @id @default(cuid())
+  value      String
+  questionId String @map("question_id")
+
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@map("question_tags")
+}
+
+model Notification {
+  id          String    @id @default(cuid())
+  content     String
+  recipientId String    @map("recipient_id")
+  readAt      DateTime? @map("read_at")
+  createdAt   DateTime  @default(now()) @map("created_at")
+
+  recipient User @relation(fields: [recipientId], references: [id])
+
+  @@map("notifications")
+}
