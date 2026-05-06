@@ -10,6 +10,8 @@ import {
 import prismaPlugin from './plugins/prisma-plugin'
 import authPlugin from './plugins/auth-plugin'
 import { authRoutes } from './routes/auth-routes'
+import { questionRoutes } from './routes/question-routes'
+import { answerRoutes } from './routes/answer-routes'
 
 const app = fastify()
 
@@ -36,6 +38,8 @@ app.register(swaggerUi, {
 })
 
 app.register(authRoutes)
+app.register(questionRoutes)
+app.register(answerRoutes)
 
 app.get('/health', async () => {
   return { status: 'ok' }
