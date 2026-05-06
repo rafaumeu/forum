@@ -1,8 +1,5 @@
 import { UniqueEntityId } from '@/core/entities/unique-entity-id'
-import {
-  User,
-  UserProps,
-} from '@/domain/forum/enterprise/entities/user'
+import { User, UserProps } from '@/domain/forum/enterprise/entities/user'
 import { faker } from '@faker-js/faker'
 
 export function makeUser(
