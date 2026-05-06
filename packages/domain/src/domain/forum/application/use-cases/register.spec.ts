@@ -22,8 +22,10 @@ describe('Register', () => {
     })
 
     expect(result.isRight()).toBe(true)
-    expect(result.value?.user.name).toBe('John Doe')
-    expect(result.value?.user.email).toBe('johndoe@example.com')
+    if (result.isRight()) {
+      expect(result.value.user.name).toBe('John Doe')
+      expect(result.value.user.email).toBe('johndoe@example.com')
+    }
   })
 
   it('should hash user password upon registration', async () => {
@@ -34,8 +36,10 @@ describe('Register', () => {
     })
 
     expect(result.isRight()).toBe(true)
-    expect(result.value?.user.password).not.toBe('123456')
-    expect(compareSync('123456', result.value!.user.password)).toBe(true)
+    if (result.isRight()) {
+      expect(result.value.user.password).not.toBe('123456')
+      expect(compareSync('123456', result.value.user.password)).toBe(true)
+    }
   })
 
   it('should be able to register a user with a specific role', async () => {
@@ -47,7 +51,9 @@ describe('Register', () => {
     })
 
     expect(result.isRight()).toBe(true)
-    expect(result.value?.user.isInstructor).toBe(true)
+    if (result.isRight()) {
+      expect(result.value.user.isInstructor).toBe(true)
+    }
   })
 
   it('should not be able to register with same email twice', async () => {

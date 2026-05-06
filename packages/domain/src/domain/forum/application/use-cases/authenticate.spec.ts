@@ -31,7 +31,9 @@ describe('Authenticate', () => {
     })
 
     expect(result.isRight()).toBe(true)
-    expect(result.value?.user.email).toBe('johndoe@example.com')
+    if (result.isRight()) {
+      expect(result.value.user.email).toBe('johndoe@example.com')
+    }
   })
 
   it('should not be able to authenticate with wrong email', async () => {
