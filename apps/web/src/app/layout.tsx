@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Providers } from './providers'
 import { Header } from '@/components/header'
@@ -14,9 +14,56 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#09090b',
+}
+
 export const metadata: Metadata = {
-  title: 'Forum — Perguntas e Respostas',
+  title: {
+    default: 'Forum — Perguntas e Respostas',
+    template: '%s | Forum',
+  },
+  description:
+    'Plataforma de perguntas e respostas para estudantes. Compartilhe conhecimento, tire dúvidas e aprenda com a comunidade.',
+  keywords: [
+    'forum',
+    'perguntas',
+    'respostas',
+    'estudantes',
+    'comunidade',
+    'educação',
+  ],
+  authors: [{ name: 'Rafael Zendron' }],
+  creator: 'Rafael Zendron',
+  metadataBase: new URL('https://forum-zendron.vercel.app'),
+  openGraph: {
+    type: 'website',
+    locale: 'pt_BR',
+    siteName: 'Forum',
+    title: 'Forum — Perguntas e Respostas',
+    description: 'Plataforma de perguntas e respostas para estudantes.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Forum — Perguntas e Respostas',
+    description: 'Plataforma de perguntas e respostas para estudantes.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Forum',
   description: 'Plataforma de perguntas e respostas para estudantes',
+  url: 'https://forum-zendron.vercel.app',
+  inLanguage: 'pt-BR',
 }
 
 export default function RootLayout({
@@ -30,6 +77,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Providers>
           <Header />
           <main className="flex-1">{children}</main>

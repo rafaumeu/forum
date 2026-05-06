@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { api } from '@/lib/api/client'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import {
   Card,
@@ -74,7 +74,7 @@ export default function PopularPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
-          <TrendingUp className="h-8 w-8" />
+          <TrendingUp className="h-8 w-8" aria-hidden="true" />
           Perguntas Populares
         </h1>
         <p className="text-muted-foreground">
@@ -85,18 +85,22 @@ export default function PopularPage() {
       <Separator className="mb-6" />
 
       {loading ? (
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <div className="flex items-center justify-center py-12" role="status" aria-label="Carregando perguntas populares">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" aria-hidden="true" />
+          <span className="sr-only">Carregando perguntas populares...</span>
         </div>
       ) : questions.length === 0 ? (
         <div className="text-center py-12">
-          <TrendingUp className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+          <TrendingUp className="h-12 w-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <h2 className="text-xl font-semibold mb-2">Nenhuma pergunta popular ainda</h2>
           <p className="text-muted-foreground mb-4">
             As perguntas mais respondidas aparecerão aqui
           </p>
-          <Link href="/">
-            <Button variant="outline">Ver Perguntas Recentes</Button>
+          <Link
+            href="/"
+            className={buttonVariants({ variant: 'outline' })}
+          >
+            Ver Perguntas Recentes
           </Link>
         </div>
       ) : (
@@ -105,7 +109,7 @@ export default function PopularPage() {
             <Card key={question.id} className="hover:shadow-md transition-shadow">
               <CardHeader className="pb-3">
                 <div className="flex items-start gap-3">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm shrink-0">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm shrink-0" aria-hidden="true">
                     {index + 1 + (page - 1) * perPage}
                   </div>
                   <div className="flex-1 min-w-0">
@@ -119,7 +123,7 @@ export default function PopularPage() {
                     </CardDescription>
                   </div>
                   <Badge variant="secondary" className="shrink-0 gap-1">
-                    <MessageSquare className="h-3 w-3" />
+                    <MessageSquare className="h-3 w-3" aria-hidden="true" />
                     {question.answersCount ?? 0}
                   </Badge>
                 </div>
@@ -127,7 +131,7 @@ export default function PopularPage() {
               <CardFooter className="pt-0">
                 <div className="flex items-center gap-2 ml-11">
                   <Avatar className="h-5 w-5">
-                    <AvatarFallback className="text-[10px]">
+                    <AvatarFallback className="text-[10px]" aria-label={`Avatar de ${question.authorName}`}>
                       {getInitials(question.authorName)}
                     </AvatarFallback>
                   </Avatar>
@@ -143,31 +147,31 @@ export default function PopularPage() {
       )}
 
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <Button
-            variant="outline"
-            size="sm"
+        <nav aria-label="Paginação" className="flex items-center justify-center gap-2 mt-8">
+          <button
+            type="button"
+            className={buttonVariants({ variant: 'outline', size: 'sm', className: 'gap-1' })}
             disabled={page <= 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
-            className="gap-1"
+            aria-label="Página anterior"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             Anterior
-          </Button>
-          <span className="text-sm text-muted-foreground">
+          </button>
+          <span className="text-sm text-muted-foreground" aria-live="polite">
             {page} de {totalPages}
           </span>
-          <Button
-            variant="outline"
-            size="sm"
+          <button
+            type="button"
+            className={buttonVariants({ variant: 'outline', size: 'sm', className: 'gap-1' })}
             disabled={page >= totalPages}
             onClick={() => setPage((p) => p + 1)}
-            className="gap-1"
+            aria-label="Próxima página"
           >
             Próximo
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
+            <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </nav>
       )}
     </div>
   )

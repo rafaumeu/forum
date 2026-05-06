@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/auth/auth-context'
 import { api } from '@/lib/api/client'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import {
   Card,
@@ -64,15 +64,17 @@ function QuestionCard({ question }: { question: Question }) {
       <CardFooter className="pt-0 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Avatar className="h-6 w-6">
-            <AvatarFallback className="text-xs">{initials}</AvatarFallback>
+            <AvatarFallback className="text-xs" aria-label={`Avatar de ${question.authorName}`}>
+              {initials}
+            </AvatarFallback>
           </Avatar>
           <span className="text-sm text-muted-foreground">{question.authorName}</span>
           <span className="text-xs text-muted-foreground">
             {new Date(question.createdAt).toLocaleDateString('pt-BR')}
           </span>
         </div>
-        <div className="flex items-center gap-1 text-muted-foreground">
-          <MessageSquare className="h-4 w-4" />
+        <div className="flex items-center gap-1 text-muted-foreground" aria-label={`${question.answersCount ?? 0} respostas`}>
+          <MessageSquare className="h-4 w-4" aria-hidden="true" />
           <span className="text-sm">{question.answersCount ?? 0}</span>
         </div>
       </CardFooter>
@@ -133,30 +135,39 @@ export default function HomePage() {
 
       {/* Search + Actions */}
       <div className="flex flex-col sm:flex-row gap-3 mb-6">
-        <form onSubmit={handleSearch} className="flex-1 flex gap-2">
+        <form onSubmit={handleSearch} className="flex-1 flex gap-2" role="search">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" aria-hidden="true" />
             <Input
+              type="search"
               placeholder="Buscar perguntas..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-9"
+              aria-label="Buscar perguntas"
             />
           </div>
-          <Button type="submit" variant="secondary">
+          <button
+            type="submit"
+            className={buttonVariants({ variant: 'secondary' })}
+          >
             Buscar
-          </Button>
+          </button>
         </form>
         <div className="flex gap-2">
-          <Link href="/popular">
-            <Button variant="outline" className="gap-2">
-              <TrendingUp className="h-4 w-4" />
-              Popular
-            </Button>
+          <Link
+            href="/popular"
+            className={buttonVariants({ variant: 'outline', className: 'gap-2' })}
+          >
+            <TrendingUp className="h-4 w-4" aria-hidden="true" />
+            Popular
           </Link>
           {isAuthenticated && (
-            <Link href="/questions/new">
-              <Button className="gap-2">Nova Pergunta</Button>
+            <Link
+              href="/questions/new"
+              className={buttonVariants({ className: 'gap-2' })}
+            >
+              Nova Pergunta
             </Link>
           )}
         </div>
@@ -166,23 +177,30 @@ export default function HomePage() {
 
       {/* Questions List */}
       {loading ? (
-        <div className="flex items-center justify-center py-12">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <div className="flex items-center justify-center py-12" role="status" aria-label="Carregando perguntas">
+          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" aria-hidden="true" />
+          <span className="sr-only">Carregando perguntas...</span>
         </div>
       ) : questions.length === 0 ? (
         <div className="text-center py-12">
-          <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+          <MessageSquare className="h-12 w-12 mx-auto text-muted-foreground mb-4" aria-hidden="true" />
           <h2 className="text-xl font-semibold mb-2">Nenhuma pergunta ainda</h2>
           <p className="text-muted-foreground mb-4">
             Seja o primeiro a fazer uma pergunta!
           </p>
           {isAuthenticated ? (
-            <Link href="/questions/new">
-              <Button>Criar Pergunta</Button>
+            <Link
+              href="/questions/new"
+              className={buttonVariants({})}
+            >
+              Criar Pergunta
             </Link>
           ) : (
-            <Link href="/login">
-              <Button>Entrar para Perguntar</Button>
+            <Link
+              href="/login"
+              className={buttonVariants({})}
+            >
+              Entrar para Perguntar
             </Link>
           )}
         </div>
@@ -196,31 +214,31 @@ export default function HomePage() {
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <Button
-            variant="outline"
-            size="sm"
+        <nav aria-label="Paginação" className="flex items-center justify-center gap-2 mt-8">
+          <button
+            type="button"
+            className={buttonVariants({ variant: 'outline', size: 'sm', className: 'gap-1' })}
             disabled={page <= 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
-            className="gap-1"
+            aria-label="Página anterior"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
             Anterior
-          </Button>
-          <span className="text-sm text-muted-foreground">
+          </button>
+          <span className="text-sm text-muted-foreground" aria-live="polite">
             {page} de {totalPages}
           </span>
-          <Button
-            variant="outline"
-            size="sm"
+          <button
+            type="button"
+            className={buttonVariants({ variant: 'outline', size: 'sm', className: 'gap-1' })}
             disabled={page >= totalPages}
             onClick={() => setPage((p) => p + 1)}
-            className="gap-1"
+            aria-label="Próxima página"
           >
             Próximo
-            <ChevronRight className="h-4 w-4" />
-          </Button>
-        </div>
+            <ChevronRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </nav>
       )}
     </div>
   )

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useAuth } from '@/lib/auth/auth-context'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import {
   DropdownMenu,
@@ -24,7 +24,7 @@ export function Header() {
           <span className="font-bold text-lg">Forum</span>
         </Link>
 
-        <nav className="flex items-center gap-4 flex-1">
+        <nav aria-label="Navegação principal" className="flex items-center gap-4 flex-1">
           <Link
             href="/"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
@@ -39,8 +39,11 @@ export function Header() {
           </Link>
 
           {isAuthenticated && (
-            <Link href="/questions/new">
-              <Button size="sm">Nova Pergunta</Button>
+            <Link
+              href="/questions/new"
+              className={buttonVariants({ size: 'sm' })}
+            >
+              Nova Pergunta
             </Link>
           )}
         </nav>
@@ -49,12 +52,13 @@ export function Header() {
           {isAuthenticated && user ? (
             <DropdownMenu>
               <DropdownMenuTrigger>
-                <Button
-                  variant="ghost"
-                  className="relative h-8 w-8 rounded-full"
+                <button
+                  type="button"
+                  aria-label="Menu do usuário"
+                  className="relative flex h-8 w-8 items-center justify-center rounded-full hover:bg-muted transition-colors"
                 >
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback>
+                    <AvatarFallback aria-label={`Perfil de ${user.name}`}>
                       {user.name
                         .split(' ')
                         .map((n) => n[0])
@@ -63,7 +67,7 @@ export function Header() {
                         .slice(0, 2)}
                     </AvatarFallback>
                   </Avatar>
-                </Button>
+                </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem className="text-sm text-muted-foreground">
@@ -83,13 +87,17 @@ export function Header() {
             </DropdownMenu>
           ) : (
             <div className="flex items-center gap-2">
-              <Link href="/login">
-                <Button variant="ghost" size="sm">
-                  Entrar
-                </Button>
+              <Link
+                href="/login"
+                className={buttonVariants({ variant: 'ghost', size: 'sm' })}
+              >
+                Entrar
               </Link>
-              <Link href="/register">
-                <Button size="sm">Criar Conta</Button>
+              <Link
+                href="/register"
+                className={buttonVariants({ size: 'sm' })}
+              >
+                Criar Conta
               </Link>
             </div>
           )}

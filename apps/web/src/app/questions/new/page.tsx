@@ -28,8 +28,9 @@ export default function NewQuestionPage() {
 
   if (authLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      <div className="flex items-center justify-center min-h-[60vh]" role="status">
+        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" aria-hidden="true" />
+        <span className="sr-only">Carregando...</span>
       </div>
     )
   }
@@ -112,10 +113,10 @@ export default function NewQuestionPage() {
             >
               Cancelar
             </Button>
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={loading} aria-live="polite">
               {loading ? (
                 <>
-                  <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                  <Loader2 className="h-4 w-4 animate-spin mr-2" aria-hidden="true" />
                   Publicando...
                 </>
               ) : (
