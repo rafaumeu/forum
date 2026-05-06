@@ -2,7 +2,9 @@ import { defineConfig } from 'orval'
 
 export default defineConfig({
   forum: {
-    input: 'http://localhost:3333/docs/json',
+    input: {
+      target: './src/lib/api/swagger.json',
+    },
     output: {
       target: 'src/lib/api/generated.ts',
       client: 'react-query',
