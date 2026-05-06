@@ -21,8 +21,14 @@ if (isMock) {
     // Answers endpoint: /questions/:id/answers
     const answersMatch = url.match(/^\/questions\/([^/]+)\/answers$/)
     if (answersMatch) {
-      const { getMockQuestionBySlug } = await import('./mock-responses')
-      const result = getMockQuestionBySlug(answersMatch[1])
+      const { getMockQuestionBySlug, getMockQuestions } = await import('./mock-responses')
+      // Try by slug first, then by id
+      let result = getMockQuestionBySlug(answersMatch[1])
+      if (!result) {
+        const allQ = getMockQuestions(1, 100).questions
+        const q = allQ.find(q => q.id === answersMatch[1])
+        if (q) result = getMockQuestionBySlug(q.slug)
+      }
       mockData = result
         ? { answers: result.answers, total: result.answers.length }
         : { answers: [], total: 0 }
