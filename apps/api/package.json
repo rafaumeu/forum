@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "exports": {
+    "./vercel": {
+      "import": "./dist/vercel-handler.js"
+    }
+  },
   "scripts": {
     "dev": "tsx watch src/infra/http/server.ts",
-    "build": "tsup src/infra/http/server.ts --format esm --out-dir dist",
+    "build": "tsup && node build-vercel.cjs",
     "start": "node dist/server.js",
     "test": "vitest run",
     "test:watch": "vitest",
