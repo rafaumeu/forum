@@ -7,13 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:api": "orval"
+    "generate:api": "orval",
+    "postinstall": "prisma generate --schema=../api/prisma/schema.prisma"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
+    "@forum/api": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
+    "@prisma/client": "^6.19.3",
     "@tanstack/react-query": "^5.100.9",
     "axios": "^1.16.0",
+    "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.14.0",
@@ -30,12 +34,14 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
     "orval": "^8.9.1",
+    "prisma": "^6.19.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
