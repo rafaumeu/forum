@@ -18,7 +18,8 @@ export async function fetchHandler(request: Request): Promise<Response> {
   const fastify = await ensureReady()
 
   const url = new URL(request.url)
-  const path = url.pathname + url.search
+  // Strip /api prefix — Next.js route handler matches /api/* but Fastify routes don't have /api
+  let path = url.pathname.replace(/^\/api/, '') + url.search
 
   // Read body
   let body: string | Buffer | undefined
