@@ -12,6 +12,7 @@ import authPlugin from './plugins/auth-plugin'
 import { authRoutes } from './routes/auth-routes'
 import { questionRoutes } from './routes/question-routes'
 import { answerRoutes } from './routes/answer-routes'
+import { commentRoutes } from './routes/comment-routes'
 
 const app = fastify()
 
@@ -40,6 +41,7 @@ app.register(swaggerUi, {
 app.register(authRoutes)
 app.register(questionRoutes)
 app.register(answerRoutes)
+app.register(commentRoutes)
 
 app.get('/health', async () => {
   return { status: 'ok' }
