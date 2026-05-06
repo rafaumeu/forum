@@ -7,10 +7,14 @@ import {
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 
+import prismaPlugin from './plugins/prisma-plugin'
+
 const app = fastify()
 
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
+
+app.register(prismaPlugin)
 
 app.register(swagger, {
   openapi: {
