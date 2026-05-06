@@ -16,7 +16,7 @@
     "dayjs": "^1.11.7"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.2.0",
+    "@faker-js/faker": "^10.4.0",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^18.15.11",
