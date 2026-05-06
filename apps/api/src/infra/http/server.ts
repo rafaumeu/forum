@@ -7,10 +7,20 @@ import {
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 
+import prismaPlugin from './plugins/prisma-plugin'
+import authPlugin from './plugins/auth-plugin'
+import { authRoutes } from './routes/auth-routes'
+import { questionRoutes } from './routes/question-routes'
+import { answerRoutes } from './routes/answer-routes'
+import { commentRoutes } from './routes/comment-routes'
+
 const app = fastify()
 
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
+
+app.register(prismaPlugin)
+app.register(authPlugin)
 
 app.register(swagger, {
   openapi: {
@@ -27,6 +37,11 @@ app.register(swagger, {
 app.register(swaggerUi, {
   routePrefix: '/docs',
 })
+
+app.register(authRoutes)
+app.register(questionRoutes)
+app.register(answerRoutes)
+app.register(commentRoutes)
 
 app.get('/health', async () => {
   return { status: 'ok' }

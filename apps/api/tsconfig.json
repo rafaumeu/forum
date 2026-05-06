@@ -8,14 +8,11 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "declaration": true,
-    "sourceMap": true,
-    "outDir": "./dist",
-    "rootDir": "./src",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@forum/domain": ["../packages/domain/src"]
+      "@forum/domain": ["../../packages/domain/src"],
+      "@forum/domain/*": ["../../packages/domain/src/*"]
     }
   },
   "include": ["src/**/*"],

@@ -1,4 +1,4 @@
-import { DeleteQuestionCommentsUseCase } from '@/domain/forum/application/use-cases/delete-question-coment'
+import { DeleteQuestionCommentsUseCase } from '@/domain/forum/application/use-cases/delete-question-comment'
 import { NotAllowedError } from '@/domain/forum/application/use-cases/errors/not-allowed-error'
 import { ResourceNotFoundError } from '@/domain/forum/application/use-cases/errors/resource-not-found-error'
 import { makeQuestionComment } from '@/test/factories/make-question-comment'
