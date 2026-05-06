@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: '../../',
   },
+  compress: true,
+  poweredByHeader: false,
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
 }
 
 export default nextConfig
