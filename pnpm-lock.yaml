@@ -102,6 +102,9 @@ importers:
 
   packages/domain:
     dependencies:
+      bcryptjs:
+        specifier: ^2.4.3
+        version: 2.4.3
       dayjs:
         specifier: ^1.11.7
         version: 1.11.20
@@ -112,6 +115,9 @@ importers:
       '@rocketseat/eslint-config':
         specifier: ^2.2.2
         version: 2.2.2(eslint@8.57.1)(typescript@5.9.3)
+      '@types/bcryptjs':
+        specifier: ^2.4.6
+        version: 2.4.6
       '@types/node':
         specifier: ^18.15.11
         version: 18.19.130
