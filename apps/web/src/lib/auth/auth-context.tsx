@@ -35,8 +35,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const checkAuth = useCallback(async () => {
     try {
-      const apiBaseUrl =
-        process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333'
+      const isMock = process.env.NEXT_PUBLIC_MOCK_API === 'true'
+      const apiBaseUrl = isMock ? '' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333')
       const res = await fetch(`${apiBaseUrl}/me`, {
         credentials: 'include',
       })
@@ -60,8 +60,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [checkAuth])
 
   const signIn = async (email: string, password: string) => {
-    const apiBaseUrl =
-      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333'
+    const isMock = process.env.NEXT_PUBLIC_MOCK_API === 'true'
+    const apiBaseUrl = isMock ? '' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333')
     const res = await fetch(`${apiBaseUrl}/sessions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -79,8 +79,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const signUp = async (name: string, email: string, password: string) => {
-    const apiBaseUrl =
-      process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333'
+    const isMock = process.env.NEXT_PUBLIC_MOCK_API === 'true'
+    const apiBaseUrl = isMock ? '' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333')
     const res = await fetch(`${apiBaseUrl}/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -98,8 +98,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const signOut = async () => {
     try {
-      const apiBaseUrl =
-        process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333'
+      const isMock = process.env.NEXT_PUBLIC_MOCK_API === 'true'
+      const apiBaseUrl = isMock ? '' : (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333')
       await fetch(`${apiBaseUrl}/logout`, {
         method: 'POST',
         credentials: 'include',
