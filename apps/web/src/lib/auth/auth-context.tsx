@@ -54,7 +54,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    checkAuth()
+    void (async () => {
+      await checkAuth()
+    })()
   }, [checkAuth])
 
   const signIn = async (email: string, password: string) => {

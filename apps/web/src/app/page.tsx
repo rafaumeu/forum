@@ -7,13 +7,11 @@ import { useAuth } from '@/lib/auth/auth-context'
 import { api } from '@/lib/api/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Badge } from '@/components/ui/badge'
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
   CardFooter,
 } from '@/components/ui/card'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -111,7 +109,9 @@ export default function HomePage() {
   }, [page])
 
   useEffect(() => {
-    fetchQuestions()
+    void (async () => {
+      await fetchQuestions()
+    })()
   }, [fetchQuestions])
 
   function handleSearch(e: React.FormEvent) {

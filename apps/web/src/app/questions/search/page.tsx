@@ -67,7 +67,9 @@ function SearchResults() {
   }, [query, page])
 
   useEffect(() => {
-    fetchResults()
+    void (async () => {
+      await fetchResults()
+    })()
   }, [fetchResults])
 
   if (!query) {

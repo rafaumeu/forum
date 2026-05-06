@@ -65,7 +65,9 @@ export default function PopularPage() {
   }, [page])
 
   useEffect(() => {
-    fetchPopular()
+    void (async () => {
+      await fetchPopular()
+    })()
   }, [fetchPopular])
 
   return (
