@@ -1,0 +1,567 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Forum API",
+    "description": "Forum API with DDD + Clean Architecture",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Register a new user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["name", "email", "password"],
+                "properties": {
+                  "name": {"type": "string"},
+                  "email": {"type": "string", "format": "email"},
+                  "password": {"type": "string", "minLength": 6},
+                  "role": {"type": "string", "enum": ["STUDENT", "INSTRUCTOR"]}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {"$ref": "#/components/schemas/User"}
+                  }
+                }
+              }
+            }
+          },
+          "409": {"description": "User already exists"},
+          "400": {"description": "Validation error"}
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Authenticate a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["email", "password"],
+                "properties": {
+                  "email": {"type": "string", "format": "email"},
+                  "password": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {"$ref": "#/components/schemas/User"}
+                  }
+                }
+              }
+            }
+          },
+          "401": {"description": "Wrong credentials"}
+        }
+      }
+    },
+    "/me": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get current authenticated user",
+        "security": [{"cookieAuth": []}],
+        "responses": {
+          "200": {
+            "description": "Current user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {"$ref": "#/components/schemas/User"}
+                  }
+                }
+              }
+            }
+          },
+          "401": {"description": "Unauthorized"}
+        }
+      }
+    },
+    "/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Logout current user",
+        "responses": {
+          "204": {"description": "Logged out"}
+        }
+      }
+    },
+    "/questions": {
+      "get": {
+        "tags": ["Questions"],
+        "summary": "Fetch recent questions",
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "default": 1}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Questions list",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/QuestionsResponse"}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Questions"],
+        "summary": "Create a question",
+        "security": [{"cookieAuth": []}],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content"],
+                "properties": {
+                  "title": {"type": "string"},
+                  "content": {"type": "string"},
+                  "attachmentsIds": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Question created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "question": {"$ref": "#/components/schemas/Question"}
+                  }
+                }
+              }
+            }
+          },
+          "401": {"description": "Unauthorized"}
+        }
+      }
+    },
+    "/questions/popular": {
+      "get": {
+        "tags": ["Questions"],
+        "summary": "Fetch popular questions",
+        "parameters": [
+          {"name": "page", "in": "query", "schema": {"type": "integer", "default": 1}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Popular questions",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/QuestionsResponse"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/questions/search": {
+      "get": {
+        "tags": ["Questions"],
+        "summary": "Search questions",
+        "parameters": [
+          {"name": "q", "in": "query", "required": true, "schema": {"type": "string"}},
+          {"name": "tags", "in": "query", "schema": {"type": "string"}},
+          {"name": "page", "in": "query", "schema": {"type": "integer", "default": 1}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/QuestionsResponse"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/questions/{slug}": {
+      "get": {
+        "tags": ["Questions"],
+        "summary": "Get question by slug",
+        "parameters": [
+          {"name": "slug", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Question detail",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "question": {"$ref": "#/components/schemas/QuestionDetail"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/questions/{questionId}": {
+      "put": {
+        "tags": ["Questions"],
+        "summary": "Edit a question",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "questionId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "content"],
+                "properties": {
+                  "title": {"type": "string"},
+                  "content": {"type": "string"},
+                  "attachmentsIds": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Question updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "question": {"$ref": "#/components/schemas/Question"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Questions"],
+        "summary": "Delete a question",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "questionId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "204": {"description": "Deleted"}
+        }
+      }
+    },
+    "/questions/{questionId}/answers": {
+      "get": {
+        "tags": ["Answers"],
+        "summary": "Fetch answers for a question",
+        "parameters": [
+          {"name": "questionId", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "page", "in": "query", "schema": {"type": "integer", "default": 1}}
+        ],
+        "responses": {
+          "200": {
+            "description": "Answers list",
+            "content": {
+              "application/json": {
+                "schema": {"$ref": "#/components/schemas/AnswersResponse"}
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Answers"],
+        "summary": "Answer a question",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "questionId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {"type": "string"},
+                  "attachmentsIds": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Answer created"},
+          "401": {"description": "Unauthorized"}
+        }
+      }
+    },
+    "/answers/{answerId}/best": {
+      "patch": {
+        "tags": ["Answers"],
+        "summary": "Mark best answer",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "answerId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "200": {"description": "Marked as best"},
+          "401": {"description": "Unauthorized"}
+        }
+      }
+    },
+    "/answers/{answerId}": {
+      "put": {
+        "tags": ["Answers"],
+        "summary": "Edit an answer",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "answerId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {"type": "string"},
+                  "attachmentsIds": {"type": "array", "items": {"type": "string"}}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {"description": "Answer updated"}
+        }
+      },
+      "delete": {
+        "tags": ["Answers"],
+        "summary": "Delete an answer",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "answerId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "responses": {
+          "204": {"description": "Deleted"}
+        }
+      }
+    },
+    "/questions/{questionId}/comments": {
+      "get": {
+        "tags": ["Comments"],
+        "summary": "Fetch question comments",
+        "parameters": [
+          {"name": "questionId", "in": "path", "required": true, "schema": {"type": "string"}},
+          {"name": "page", "in": "query", "schema": {"type": "integer", "default": 1}}
+        ],
+        "responses": {
+          "200": {"description": "Comments list"}
+        }
+      },
+      "post": {
+        "tags": ["Comments"],
+        "summary": "Comment on a question",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "questionId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Comment created"},
+          "401": {"description": "Unauthorized"}
+        }
+      }
+    },
+    "/answers/{answerId}/comments": {
+      "post": {
+        "tags": ["Comments"],
+        "summary": "Comment on an answer",
+        "security": [{"cookieAuth": []}],
+        "parameters": [
+          {"name": "answerId", "in": "path", "required": true, "schema": {"type": "string"}}
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "content": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {"description": "Comment created"},
+          "401": {"description": "Unauthorized"}
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": ["Health"],
+        "summary": "Health check",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {"type": "string", "example": "ok"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "access_token"
+      }
+    },
+    "schemas": {
+      "User": {
+        "type": "object",
+        "required": ["id", "name", "email", "role", "createdAt"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "email": {"type": "string", "format": "email"},
+          "role": {"type": "string"},
+          "createdAt": {"type": "string", "format": "date-time"}
+        }
+      },
+      "Question": {
+        "type": "object",
+        "required": ["id", "slug", "title", "content", "authorId", "authorName", "createdAt"],
+        "properties": {
+          "id": {"type": "string"},
+          "slug": {"type": "string"},
+          "title": {"type": "string"},
+          "content": {"type": "string"},
+          "authorId": {"type": "string"},
+          "authorName": {"type": "string"},
+          "answersCount": {"type": "integer"},
+          "createdAt": {"type": "string", "format": "date-time"},
+          "updatedAt": {"type": "string", "format": "date-time"}
+        }
+      },
+      "QuestionDetail": {
+        "type": "object",
+        "required": ["id", "slug", "title", "content", "authorId", "authorName", "createdAt"],
+        "properties": {
+          "id": {"type": "string"},
+          "slug": {"type": "string"},
+          "title": {"type": "string"},
+          "content": {"type": "string"},
+          "authorId": {"type": "string"},
+          "authorName": {"type": "string"},
+          "bestAnswerId": {"type": "string", "nullable": true},
+          "createdAt": {"type": "string", "format": "date-time"},
+          "updatedAt": {"type": "string", "format": "date-time"}
+        }
+      },
+      "Answer": {
+        "type": "object",
+        "required": ["id", "content", "authorId", "authorName", "createdAt"],
+        "properties": {
+          "id": {"type": "string"},
+          "content": {"type": "string"},
+          "authorId": {"type": "string"},
+          "authorName": {"type": "string"},
+          "isBestAnswer": {"type": "boolean"},
+          "createdAt": {"type": "string", "format": "date-time"}
+        }
+      },
+      "QuestionsResponse": {
+        "type": "object",
+        "properties": {
+          "questions": {
+            "type": "array",
+            "items": {"$ref": "#/components/schemas/Question"}
+          },
+          "total": {"type": "integer"},
+          "page": {"type": "integer"},
+          "perPage": {"type": "integer"}
+        }
+      },
+      "AnswersResponse": {
+        "type": "object",
+        "properties": {
+          "answers": {
+            "type": "array",
+            "items": {"$ref": "#/components/schemas/Answer"}
+          },
+          "total": {"type": "integer"},
+          "page": {"type": "integer"},
+          "perPage": {"type": "integer"}
+        }
+      }
+    }
+  }
+}
