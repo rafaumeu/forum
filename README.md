@@ -2,6 +2,11 @@
   <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=FFCA28&height=180&section=header&text=Forum%20DDD&fontSize=42&fontColor=fff&animation=fadeIn&fontAlignY=35&desc=Clean%20Architecture%20%20and%20%20Domain-Driven%20Design&descSize=18&descAlignY=52"/>
 </div>
 
+<div align="center">
+  <img src="./docs/screenshot.png" alt="Forum DDD Screenshot" width="100%" />
+  <sup>Desktop · <a href="./docs/screenshot-mobile.png">Mobile</a></sup>
+</div>
+
 # Forum Domain Layer — DDD & Clean Architecture Reference Implementation
 
 [<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.0-3178C6.svg"/>](https://www.typescriptlang.org/)
