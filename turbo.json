@@ -5,6 +5,7 @@
     "test": { "dependsOn": ["build"] },
     "test:coverage": { "dependsOn": ["build"] },
     "lint": {},
+    "generate:api": { "cache": false },
     "dev": { "cache": false, "persistent": true }
   }
 }
