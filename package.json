@@ -7,7 +7,10 @@
     "test": "turbo test",
     "test:coverage": "turbo test:coverage",
     "lint": "turbo lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:build": "docker compose build"
   },
   "lint-staged": {
     "packages/domain/src/**/*.{ts,tsx}": [
