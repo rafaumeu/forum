@@ -13,6 +13,11 @@
 [<img alt="Vitest" src="https://img.shields.io/badge/Vitest-2.1-6E9F18.svg"/>](https://vitest.dev/)
 [<img alt="DDD" src="https://img.shields.io/badge/Pattern-Domain_Driven_Design-orange.svg"/>](https://en.wikipedia.org/wiki/Domain-driven_design)
 [<img alt="Clean Architecture" src="https://img.shields.io/badge/Pattern-Clean_Architecture-blue.svg"/>](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
+[<img alt="Fastify" src="https://img.shields.io/badge/Fastify-5-black.svg"/>](https://fastify.dev/)
+[<img alt="Prisma" src="https://img.shields.io/badge/Prisma-6-2D3748.svg"/>](https://prisma.io/)
+[<img alt="Docker" src="https://img.shields.io/badge/Docker-ready-2496ED.svg"/>](https://docker.com/)
+[<img alt="Swagger" src="https://img.shields.io/badge/Swagger-UI-85EA2D.svg"/>](https://swagger.io/)
+[<img alt="Rate Limit" src="https://img.shields.io/badge/Rate_Limit-100/min-orange.svg"/>]()
 [<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"/>](https://opensource.org/licenses/MIT)
 
 > Pure domain layer implementing a discussion forum with Domain-Driven Design, Clean Architecture, and functional error handling patterns.
