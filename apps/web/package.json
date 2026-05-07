@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:api": "orval"
+    "generate:api": "orval",
+    "generate:swagger": "curl -s http://localhost:3333/docs/json -o src/lib/api/swagger.json"
   },
   "dependencies": {
     "@base-ui/react": "^1.4.1",
