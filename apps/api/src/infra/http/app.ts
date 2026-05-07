@@ -7,6 +7,7 @@ import {
   validatorCompiler,
 } from 'fastify-type-provider-zod'
 
+import rateLimit from '@fastify/rate-limit'
 import prismaPlugin from './plugins/prisma-plugin'
 import authPlugin from './plugins/auth-plugin'
 import { authRoutes } from './routes/auth-routes'
@@ -37,6 +38,8 @@ app.register(swagger, {
 app.register(swaggerUi, {
   routePrefix: '/docs',
 })
+
+app.register(rateLimit, { max: 100, timeWindow: '1 minute' })
 
 app.register(authRoutes)
 app.register(questionRoutes)
