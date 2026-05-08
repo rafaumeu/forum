@@ -7,7 +7,7 @@
   <sup>Desktop · <a href="./docs/screenshot-mobile.png">Mobile</a></sup>
 </div>
 
-# Forum Domain Layer — DDD & Clean Architecture Reference Implementation
+## Overview
 
 [<img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5.0-3178C6.svg"/>](https://www.typescriptlang.org/)
 [<img alt="Vitest" src="https://img.shields.io/badge/Vitest-2.1-6E9F18.svg"/>](https://vitest.dev/)
